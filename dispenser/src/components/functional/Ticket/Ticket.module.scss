@@ -1,0 +1,50 @@
+.ticket {
+  border-radius: 10px;
+  background: #01afb3;
+  padding: 20px;
+  width: 700px;
+
+  .container {
+    border-radius: 10px;
+    border: 7px solid white;
+    padding: 50px 20px;
+
+    .text {
+      text-align: center;
+      font-family: "Montserrat";
+      font-style: normal;
+      font-weight: 700;
+      font-size: 30px;
+      color: white;
+      margin-bottom: 100px;
+    }
+
+    .number {
+      text-align: center;
+      font-family: "Montserrat";
+      font-style: normal;
+      font-weight: 700;
+      font-size: 200px;
+      color: white;
+    }
+
+    .section {
+      text-align: center;
+      font-family: "Montserrat";
+      font-style: normal;
+      font-weight: 700;
+      font-size: 30px;
+      color: white;
+      margin-bottom: 100px;
+    }
+
+    .message {
+      text-align: center;
+      font-family: "Montserrat";
+      font-style: normal;
+      font-weight: 700;
+      font-size: 30px;
+      color: white;
+    }
+  }
+}

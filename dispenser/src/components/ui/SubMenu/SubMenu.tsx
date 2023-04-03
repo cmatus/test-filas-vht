@@ -5,6 +5,7 @@ import styles from "./SubMenu.module.scss";
 interface IOption {
   name: string;
   text: string;
+  activity: string;
   path: string;
 }
 

@@ -9,14 +9,14 @@ import { useUI } from "@/store/hooks";
 const Rut = () => {
   const router = useRouter();
 
-  const { setFooterButtons } = useUI();
+  const { setFooterButtons, activity } = useUI();
 
   const [showLoading, setShowLoading] = useState(false);
 
   const handleConfirm = () => {
     setShowLoading(true);
     setTimeout(() => {
-      router.push("/samplingOrders");
+      router.push(activity === "cdt" ? "/activities" : "/samplingOrders");
       setShowLoading(false);
     }, 2000);
   };

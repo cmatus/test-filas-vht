@@ -24,7 +24,7 @@ const menuOptions: IOption[] = [
     name: "cdt",
     text: "CENTRO DE DIAGNOSTICO Y TRATAMIENTO",
     icon: "tratamiento_diagnostico.png",
-    path: "/activities",
+    path: "/rut",
   },
 ];
 

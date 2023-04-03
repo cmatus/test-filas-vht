@@ -17,19 +17,19 @@ const activitiesOptions = [
     name: "",
     text: "SOLICITUD DE HORA PARA TOMA DE EXÁMENES",
     activity: "lab",
-    path: "",
+    path: "/rut",
   },
   {
     name: "",
     text: "SOLICITUD DE RESULTADOS DE EXÁMENES",
     activity: "lab",
-    path: "",
+    path: "/rut",
   },
   {
     name: "",
     text: "OTRAS CONSULTAS",
     activity: "lab",
-    path: "",
+    path: "/preferential",
   },
   {
     name: "",

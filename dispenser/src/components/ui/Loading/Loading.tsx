@@ -7,7 +7,7 @@ interface ILoading {
   show: boolean;
 }
 
-const Loading = ({ text = "Por favor epere", show }: ILoading) => {
+const Loading = ({ text = "Por favor espere", show }: ILoading) => {
   return (
     <Modal showModal={show}>
       <Window showCloseButton={false}>

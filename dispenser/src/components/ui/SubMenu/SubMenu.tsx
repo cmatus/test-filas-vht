@@ -41,19 +41,6 @@ const SubMenuOption = ({ data }: ISubMenuOption) => {
 };
 
 const SubMenuConfirmExam = () => {
-  const options: IOption[] = [
-    {
-      name: "confirm",
-      text: "Confirmar",
-      path: "/confirm-exam",
-    },
-    {
-      name: "cancel",
-      text: "Cancelar",
-      path: "/cancel-exam",
-    },
-  ];
-
   return (
     <div className={styles.buttonContainer}>
       <h3>¿Desea realizar el examen seleccionado?</h3>

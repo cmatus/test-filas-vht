@@ -10,27 +10,49 @@ const activitiesOptions = [
   {
     name: "",
     text: "TOMA DE MUESTRAS",
+    activity: "lab",
     path: "/rut",
   },
   {
     name: "",
     text: "SOLICITUD DE HORA PARA TOMA DE EXÁMENES",
+    activity: "lab",
     path: "",
   },
   {
     name: "",
     text: "SOLICITUD DE RESULTADOS DE EXÁMENES",
+    activity: "lab",
     path: "",
   },
   {
     name: "",
     text: "OTRAS CONSULTAS",
+    activity: "lab",
+    path: "",
+  },
+  {
+    name: "",
+    text: "INGRESO DE HORA AGENDADA",
+    activity: "cdt",
+    path: "",
+  },
+  {
+    name: "",
+    text: "POLICLÍNICO URGENCIA CON DOCUMENTO DERIVACIÓN",
+    activity: "cdt",
+    path: "",
+  },
+  {
+    name: "",
+    text: "OTROS REQUERIMIENTOS",
+    activity: "cdt",
     path: "",
   },
 ];
 
 const Activities = () => {
-  const { setFooterButtons } = useUI();
+  const { setFooterButtons, activity } = useUI();
 
   useEffect(() => {
     setFooterButtons(["back", "home", "exit"]);
@@ -39,7 +61,9 @@ const Activities = () => {
   return (
     <Fragment>
       <h2>Por favor seleccione una opción</h2>
-      <SubMenu options={activitiesOptions} />
+      <SubMenu
+        options={activitiesOptions.filter((item) => item.activity === activity)}
+      />
     </Fragment>
   );
 };

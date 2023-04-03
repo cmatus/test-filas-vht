@@ -6,6 +6,7 @@ import NavButton from "@/components/ui/NavButton";
 import VigatecLogo from "@/components/ui/VigatecLogo";
 
 import styles from "./Template.module.scss";
+import Head from "next/head";
 
 interface ITemplate {
   children: any;
@@ -19,6 +20,12 @@ interface IFooter {
 const Template = ({ children, footerComponents }: ITemplate) => {
   return (
     <Screen>
+      <Head>
+        <title>TOTEM - Hospital Doctor Hernán Hneriquez Aravena</title>
+        <meta name="description" content="TOTEM by Vigatec" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <div className={styles.template}>
         <Header />
         <Body>{children}</Body>

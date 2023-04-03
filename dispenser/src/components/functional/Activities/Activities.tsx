@@ -35,7 +35,7 @@ const activitiesOptions = [
     name: "scheduledEntry",
     text: "INGRESO DE HORA AGENDADA",
     activity: "cdt",
-    path: "",
+    path: "/scheduledEntry",
   },
   {
     name: "emergencyClinicWithReferral",

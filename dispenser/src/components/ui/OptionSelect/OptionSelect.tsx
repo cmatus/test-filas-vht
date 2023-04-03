@@ -31,7 +31,7 @@ const OptionSelect = ({ title, subTitle, icon, options }: IOptionSelect) => {
           <div
             className={
               styles.option +
-              `${item.className !== "" ? " " + styles[item.className] : ""}`
+              `${item.className !== "" ? " " + styles[item.className!] : ""}`
             }
             key={idx}
             onClick={item.onClick}

@@ -8,43 +8,43 @@ import styles from "./Activities.module.scss";
 
 const activitiesOptions = [
   {
-    name: "",
+    name: "samplings",
     text: "TOMA DE MUESTRAS",
     activity: "lab",
     path: "/rut",
   },
   {
-    name: "",
+    name: "scheduleSamplings",
     text: "SOLICITUD DE HORA PARA TOMA DE EXÁMENES",
     activity: "lab",
     path: "/rut",
   },
   {
-    name: "",
+    name: "scheduleResults",
     text: "SOLICITUD DE RESULTADOS DE EXÁMENES",
     activity: "lab",
     path: "/rut",
   },
   {
-    name: "",
+    name: "otherQueries",
     text: "OTRAS CONSULTAS",
     activity: "lab",
     path: "/preferential",
   },
   {
-    name: "",
+    name: "scheduledEntry",
     text: "INGRESO DE HORA AGENDADA",
     activity: "cdt",
     path: "",
   },
   {
-    name: "",
+    name: "emergencyClinicWithReferral",
     text: "POLICLÍNICO URGENCIA CON DOCUMENTO DERIVACIÓN",
     activity: "cdt",
     path: "",
   },
   {
-    name: "",
+    name: "otherRequests",
     text: "OTROS REQUERIMIENTOS",
     activity: "cdt",
     path: "",

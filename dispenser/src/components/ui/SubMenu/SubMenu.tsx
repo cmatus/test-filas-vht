@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 
 import styles from "./SubMenu.module.scss";
 
+import { useUI } from "@/store/hooks";
 interface IOption {
   name: string;
   text: string;
@@ -31,11 +32,15 @@ const SubMenu = ({ options }: ISubMenu) => {
 
 const SubMenuOption = ({ data }: ISubMenuOption) => {
   const router = useRouter();
+
+  const { setOption } = useUI();
+
+  const handleClick = (data: IOption) => {
+    setOption(data.name);
+    router.push(data.path);
+  };
   return (
-    <div
-      className={styles.subMenuOption}
-      onClick={() => router.push(data.path)}
-    >
+    <div className={styles.subMenuOption} onClick={() => handleClick(data)}>
       {data.text}
     </div>
   );

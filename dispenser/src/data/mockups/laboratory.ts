@@ -1,13 +1,14 @@
 export const samplingOrder = {
   validacion: "003",
   resultado: {
-    solicitud: [1297137, 1297138],
+    solicitud: [],
+    //solicitud: [1297137, 1297138],
     solicitudes: {
       "16948832": [
         {
           sol_codigo: "1216061001",
           profesional: "PABLO ANDRES HAURI LONGERI",
-          paciente: "PABLO ANDRES HAURI LONGERI",
+          paciente: "SERGIO FLORES DURAN",
           servicio: "URGENCIA ADULTO",
           agendado: "1",
           prioridad: "1",
@@ -18,7 +19,7 @@ export const samplingOrder = {
         {
           sol_codigo: "1216061002",
           profesional: "PABLO ANDRES HAURI LONGERI",
-          paciente: "PABLO ANDRES HAURI LONGERI",
+          paciente: "SERGIO FLORES DURAN",
           servicio: "URGENCIA ADULTO",
           agendado: "1",
           prioridad: "1",

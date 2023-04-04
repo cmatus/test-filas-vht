@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 
+import { generateTicketNumber } from "@/utils/randomTicket";
+
 import {
   activitiesOptions,
   referralOptions,
@@ -36,7 +38,7 @@ const Ticket = () => {
     <div className={styles.ticket}>
       <div className={styles.container}>
         <div className={styles.text}>SU NÚMERO DE ATENCIÓN:</div>
-        <div className={styles.number}>A12</div>
+        <div className={styles.number}>{generateTicketNumber()}</div>
         <div className={styles.section}>{selectedOption?.text}</div>
         <div className={styles.message}>
           DIRÍJASE A LA VENTANILLA DE ATENCIÓN GENERAL

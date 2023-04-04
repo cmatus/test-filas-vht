@@ -57,7 +57,7 @@ export const activitiesOptions = [
     name: "pharmacyNormalRecipe",
     text: "RECETA MANUAL",
     activity: "pharmacy",
-    path: "",
+    path: "/preferential",
   },
 ];
 

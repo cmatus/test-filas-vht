@@ -15,7 +15,7 @@ const Welfare = () => {
     if (option === "emergencyClinicWithReferral") {
       return router.push("/clinicReferral");
     }
-    return router.push("/scheduledEntry");
+    return router.push("/directions");
   };
 
   return (

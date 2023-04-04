@@ -4,7 +4,7 @@ import { DATOS_PACIENTE } from "@/data/mockups/cdt";
 
 import { otherRequests } from "@/data/activitiesOptions";
 
-import styles from "./ScheduledEntry.module.scss";
+import styles from "./OtherRequests.module.scss";
 
 import { useUI } from "@/store/hooks";
 import SubMenu from "@/components/ui/SubMenu";

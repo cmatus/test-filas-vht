@@ -16,13 +16,12 @@ interface IOption {
 const Preferential = () => {
   const router = useRouter();
 
-  const { setFooterButtons, setPreferential, activity, option } = useUI();
+  const { setFooterButtons, setPreferential, option } = useUI();
 
   const handlePreferential = (name: string) => {
     setPreferential(name);
     const routeMap: any = {
-      scheduledEntry: () =>
-        name !== "notPreferential" && router.push("/welfare"),
+      scheduledEntry: () => router.push("/welfare"),
       emergencyClinicWithReferral: () => router.push("/welfare"),
       otherRequests: () => router.push("/otherRequests"),
       default: () =>

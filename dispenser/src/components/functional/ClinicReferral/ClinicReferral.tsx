@@ -4,7 +4,7 @@ import { DATOS_PACIENTE } from "@/data/mockups/cdt";
 
 import { referralOptions } from "@/data/activitiesOptions";
 
-import styles from "./ScheduledEntry.module.scss";
+import styles from "./ClinicReferral.module.scss";
 
 import { useUI } from "@/store/hooks";
 import SubMenu from "@/components/ui/SubMenu";

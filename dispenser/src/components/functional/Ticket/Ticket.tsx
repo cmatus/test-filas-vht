@@ -14,7 +14,7 @@ import { useUI } from "@/store/hooks";
 
 const Ticket = () => {
   const [selectedOption, setSelectedOption] = useState<any>();
-  const { option } = useUI();
+  const { setFooterButtons, option } = useUI();
 
   useEffect(() => {
     const allOptions = [
@@ -32,6 +32,7 @@ const Ticket = () => {
       });
     }
     setSelectedOption(optionMap[option]);
+    setFooterButtons(["home", "exit"]);
   }, []);
 
   return (

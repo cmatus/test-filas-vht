@@ -20,17 +20,16 @@ const Preferential = () => {
 
   const handlePreferential = (name: string) => {
     setPreferential(name);
-    if (
-      activity === "cdt" &&
-      option === "scheduledEntry" &&
-      name !== "notPreferential"
-    ) {
-      return router.push("/welfare");
-    }
-    router.push({
-      pathname: "/ticket",
-      query: { preferential: name },
-    });
+    const routeMap: any = {
+      scheduledEntry: () =>
+        name !== "notPreferential" && router.push("/welfare"),
+      emergencyClinicWithReferral: () => router.push("/welfare"),
+      otherRequests: () => router.push("/otherRequests"),
+      default: () =>
+        router.push({ pathname: "/ticket", query: { preferential: name } }),
+    };
+    const routeHandler = routeMap[option] ?? routeMap.default;
+    routeHandler();
   };
 
   const dataOptions: IOption[] = [

@@ -48,6 +48,9 @@ const SubMenuOption = ({ data }: ISubMenuOption) => {
         return router.push("/preferential");
       }
     }
+    if (data.name === "emergencyClinicWithReferral") {
+      return router.push("/preferential");
+    }
     router.push(data.path);
   };
 

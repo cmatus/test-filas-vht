@@ -31,15 +31,15 @@ export const activitiesOptions = [
   },
   {
     name: "emergencyClinicWithReferral",
-    text: "POLICLÍNICO URGENCIA CON DOCUMENTO DERIVACIÓN",
+    text: "POLICLÍNICO URGENCIA CON DOCUMENTO DE DERIVACIÓN",
     activity: "cdt",
-    path: "",
+    path: "/preferential",
   },
   {
     name: "otherRequests",
     text: "OTROS REQUERIMIENTOS",
     activity: "cdt",
-    path: "",
+    path: "/preferential",
   },
   {
     name: "pharmacyRut",
@@ -58,5 +58,47 @@ export const activitiesOptions = [
     text: "RECETA MANUAL",
     activity: "farmacy",
     path: "",
+  },
+];
+
+export const referralOptions = [
+  {
+    name: "ophthalmology",
+    text: "OFTALMOLOGÍA",
+    activity: "cdt",
+    path: "/directions",
+  },
+  {
+    name: "adultTraumatology",
+    text: "TRAUMATOLOGÍA ADULTO",
+    activity: "cdt",
+    path: "/directions",
+  },
+  {
+    name: "otolaryngology",
+    text: "OTORRINOLARINGOLOGÍA",
+    activity: "cdt",
+    path: "/directions",
+  },
+];
+
+export const otherRequests = [
+  {
+    name: "followUpRequest",
+    text: "SOLICITUD HORA CONTROL",
+    activity: "cdt",
+    path: "/directions",
+  },
+  {
+    name: "referralOrProcedure",
+    text: "INGRESO INTERCONSULTA Y/O PROCEDIMIENTO",
+    activity: "cdt",
+    path: "/directions",
+  },
+  {
+    name: "processingExpensesHCNetwork",
+    text: "TRAMITACIÓN DE PASAJES E IC RED",
+    activity: "cdt",
+    path: "/directions",
   },
 ];

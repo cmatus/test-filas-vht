@@ -28,7 +28,7 @@ const menuOptions: IOption[] = [
   },
   {
     name: "farmacy",
-    text: "FARMACIA CENTRO DE DIAGNOSTICO Y TRATAMIENTO",
+    text: "FARMACIA",
     icon: "farmacia.png",
     path: "/activities",
   },

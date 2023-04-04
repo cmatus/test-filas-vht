@@ -29,17 +29,28 @@ const Additional = () => {
         * Solo si comprará medicamentos para más de una persona.
       </div>
       <div className={styles.imageContainer}>
-        <Image
-          src={"/images/icons/add_userIcon.png"}
-          alt="agregar usuario por rut"
-          height={222}
-          width={202}
-        />
+        {type === "rut" ? (
+          <Image
+            src={"/images/icons/add_userIcon.png"}
+            alt="agregar usuario por rut"
+            height={222}
+            width={202}
+          />
+        ) : (
+          <Image
+            src={"/images/icons/add_recipe.png"}
+            alt="agregar usuario por rut"
+            height={222}
+            width={306}
+          />
+        )}
       </div>
       <div className={styles.buttonWrapper}>
         <button
           className={styles.confirmButton}
-          onClick={() => router.push("/rut")}
+          onClick={() => {
+            type === "rut" ? router.push("/rut") : router.push("/recipe");
+          }}
         >
           SI
         </button>

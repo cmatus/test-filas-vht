@@ -51,7 +51,7 @@ export const activitiesOptions = [
     name: "pharmacyRecipeNumber",
     text: "INGRESO CON NÚMERO DE RECETA",
     activity: "pharmacy",
-    path: "",
+    path: "/recipe",
   },
   {
     name: "pharmacyNormalRecipe",

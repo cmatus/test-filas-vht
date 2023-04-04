@@ -16,8 +16,15 @@ const Keyboard = ({ type = "rut", maxlength = 9, onClick }: IKeyboard) => {
   const [isEnabledConfirm, setIsEnabledConfirm] = useState(false);
 
   const handleClickChar = (char: string) => {
-    if (unFormatRut(textValue).length < maxlength) {
-      setTextValue(formatRut(textValue + char));
+    if (type === "rut") {
+      if (unFormatRut(textValue).length < maxlength) {
+        return setTextValue(formatRut(textValue + char));
+      }
+    }
+    if (type === "recipe") {
+      if (textValue.length < maxlength) {
+        return setTextValue(textValue + char);
+      }
     }
   };
 
@@ -31,6 +38,9 @@ const Keyboard = ({ type = "rut", maxlength = 9, onClick }: IKeyboard) => {
         isValidRut(unFormatRut(textValue)) &&
           rutValidate(unFormatRut(textValue))
       );
+    }
+    if (type === "recipe") {
+      setIsEnabledConfirm(true);
     }
   }, [textValue]);
 
@@ -77,11 +87,17 @@ const Keyboard = ({ type = "rut", maxlength = 9, onClick }: IKeyboard) => {
               K
             </div>
           )}
+          {type === "recipe" && (
+            <div className={styles.button} onClick={() => handleClickChar(".")}>
+              .
+            </div>
+          )}
         </div>
         <button
           className={styles.buttonConfirm}
           disabled={!isEnabledConfirm}
-          onClick={onClick}>
+          onClick={onClick}
+        >
           Confirmar
         </button>
       </div>

@@ -1,8 +1,7 @@
 import { Fragment, useEffect, useState } from "react";
 
-import SubMenu from "@/components/ui/SubMenu";
-
 import { DATOS_PACIENTE, CITAS } from "@/data/mockups/cdt";
+import { getClosestAppointment, formatTime } from "@/utils/dateTime";
 
 import styles from "./ScheduledEntry.module.scss";
 
@@ -10,84 +9,16 @@ import { useUI } from "@/store/hooks";
 import { useRouter } from "next/router";
 import Image from "next/image";
 
-interface IOption {
-  name: string;
-  text: string;
-  className?: string;
-  path?: string;
-  onClick?: any;
-}
-
 const ScheduledEntry = () => {
   const [appointment, setAppointment] = useState<any>(null);
   const { setFooterButtons } = useUI();
-
-  const formatTime = (time: string) => {
-    const hours = time?.slice(0, 2);
-    const minutes = time?.slice(2, 4);
-    return `${hours}:${minutes}`;
-  };
-
-  const formatDate = (date: string) => {
-    const year = date?.slice(0, 4);
-    const month = date?.slice(4, 6);
-    const day = date?.slice(6, 10);
-    return `${day}/${month}/${year}`;
-  };
-
-  const getClosetAppointment = () => {
-    const today = new Date();
-    const todayDate = today.getDate();
-    const todayMonth = today.getMonth() + 1;
-    const todayYear = today.getFullYear();
-    const todayHours = today.getHours();
-    const todayMinutes = today.getMinutes();
-
-    const todayDateFormatted = `${
-      todayDate < 10 ? "0" + todayDate : todayDate
-    }${todayMonth < 10 ? "0" + todayMonth : todayMonth}${todayYear}`;
-    const todayTimeFormatted = `${
-      todayHours < 10 ? "0" + todayHours : todayHours
-    }${todayMinutes < 10 ? "0" + todayMinutes : todayMinutes}`;
-
-    const appointments = CITAS.filter((appointment) => {
-      const appointmentDate = formatDate(appointment.ATENCION_FECHA);
-      const appointmentTime = formatTime(appointment.ATENCION_HORA);
-      const appointmentDateFormatted = appointmentDate.replace(/\//g, "");
-      const appointmentTimeFormatted = appointmentTime.replace(/\:/g, "");
-
-      if (
-        appointmentDateFormatted >= todayDateFormatted &&
-        (appointmentTimeFormatted >= todayTimeFormatted ||
-          appointmentTimeFormatted < todayTimeFormatted)
-      ) {
-        return appointment;
-      }
-    });
-
-    if (appointments.length > 0) {
-      const closestAppointment = appointments[0];
-      const closestDate = formatDate(closestAppointment.ATENCION_FECHA);
-      const closestTime = formatTime(closestAppointment.ATENCION_HORA);
-      const closestDateTime = new Date(`${closestDate} ${closestTime}`);
-      const timeDiffMs = closestDateTime.getTime() - today.getTime();
-      const timeDiffMin = Math.floor(timeDiffMs / 60000);
-
-      return {
-        appointment: closestAppointment,
-        timeDifference: timeDiffMin,
-      };
-    } else {
-      return null;
-    }
-  };
 
   useEffect(() => {
     setFooterButtons(["back", "home", "exit"]);
   }, []);
 
   useEffect(() => {
-    setAppointment(getClosetAppointment());
+    setAppointment(getClosestAppointment(CITAS));
   }, [CITAS]);
 
   return (
@@ -110,10 +41,7 @@ const ScheduledEntry = () => {
               a las {formatTime(appointment?.appointment?.ATENCION_HORA)} hrs
             </span>
           </h2>
-          <Appointment
-            appointment={appointment?.appointment}
-            timeDifference={appointment?.timeDifference}
-          />
+          <Appointment timeDifference={appointment?.timeDifference} />
         </>
       ) : (
         <NoAppointment />
@@ -124,11 +52,15 @@ const ScheduledEntry = () => {
 
 export default ScheduledEntry;
 
-const Appointment = ({ appointment, timeDifference }: any) => {
+const Appointment = ({ timeDifference }: any) => {
+  const router = useRouter();
+
+  const { preferential } = useUI();
+
   return (
     <div className={styles.container}>
       <div className={styles.innerContainer}>
-        {timeDifference <= 0 ? (
+        {timeDifference < 0 ? (
           <div className={styles.time}>
             <h2>
               Dado a que ha llegado tarde a su hora de citación, se evaluará su
@@ -136,17 +68,47 @@ const Appointment = ({ appointment, timeDifference }: any) => {
               su atención. Como registra previsión [PREVISIÓN] se solicitará
               dirigirse a caja posterior a confirmación.
             </h2>
-            <button className={styles.button}>Generar Ticket</button>
+            <button
+              className={styles.button}
+              onClick={() =>
+                router.push({
+                  pathname: "/ticket",
+                  query: { preferential: preferential },
+                })
+              }
+            >
+              Continuar
+            </button>
           </div>
         ) : timeDifference <= 5 ? (
           <div className={styles.time}>
             <h1>¡Ya es hora de su cita!</h1>
-            <button className={styles.button}>Generar Ticket</button>
+            <button
+              className={styles.button}
+              onClick={() =>
+                router.push({
+                  pathname: "/ticket",
+                  query: { preferential: preferential },
+                })
+              }
+            >
+              Continuar
+            </button>
           </div>
         ) : timeDifference <= 20 ? (
           <div className={styles.time}>
             <h1>¡Su cita está próxima!</h1>
-            <button className={styles.button}>Generar Ticket</button>
+            <button
+              className={styles.button}
+              onClick={() =>
+                router.push({
+                  pathname: "/ticket",
+                  query: { preferential: preferential },
+                })
+              }
+            >
+              Continuar
+            </button>
           </div>
         ) : timeDifference > 20 ? (
           <div className={styles.time}>
@@ -180,9 +142,9 @@ const NoAppointment = () => {
         <div className="buttonWrapper">
           <button
             className={styles.button}
-            onClick={() => router.push("/ticket")}
+            onClick={() => router.push("/preferential")}
           >
-            Continuar
+            Generar Ticket
           </button>
         </div>
       </div>

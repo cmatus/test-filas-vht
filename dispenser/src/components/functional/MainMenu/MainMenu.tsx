@@ -26,6 +26,12 @@ const menuOptions: IOption[] = [
     icon: "tratamiento_diagnostico.png",
     path: "/rut",
   },
+  {
+    name: "farmacy",
+    text: "FARMACIA CENTRO DE DIAGNOSTICO Y TRATAMIENTO",
+    icon: "farmacia.png",
+    path: "/activities",
+  },
 ];
 
 const MainMenu = () => {

@@ -16,11 +16,21 @@ interface IOption {
 const Preferential = () => {
   const router = useRouter();
 
-  const { setFooterButtons, setPreferential } = useUI();
+  const { setFooterButtons, setPreferential, activity, option } = useUI();
 
   const handlePreferential = (name: string) => {
     setPreferential(name);
-    router.push("/ticket");
+    if (
+      activity === "cdt" &&
+      option === "scheduledEntry" &&
+      name !== "notPreferential"
+    ) {
+      return router.push("/welfare");
+    }
+    router.push({
+      pathname: "/ticket",
+      query: { preferential: name },
+    });
   };
 
   const dataOptions: IOption[] = [

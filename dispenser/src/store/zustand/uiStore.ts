@@ -4,7 +4,7 @@ import { IUI } from "@/interfaces/ui";
 
 interface uiState {
   footerButtons: ("logo" | "home" | "back" | "exit")[];
-  activity: string;
+  activity: ("cdt" | "lab" | "farmacy") | null;
   option: string;
   preferential: string;
   isLoading: boolean;
@@ -18,7 +18,7 @@ interface uiState {
 
 export const uiStore = create<uiState>((set) => ({
   footerButtons: [],
-  activity: "",
+  activity: null,
   option: "",
   preferential: "",
   isLoading: false,

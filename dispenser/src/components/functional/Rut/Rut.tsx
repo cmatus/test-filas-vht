@@ -1,6 +1,8 @@
 import { useEffect, Fragment, useState } from "react";
 import { useRouter } from "next/router";
 
+import { samplingOrder } from "@/data/mockups/laboratory";
+
 import Keyboard from "@/components/ui/Keyboard";
 import Loading from "@/components/ui/Loading";
 
@@ -9,14 +11,18 @@ import { useUI } from "@/store/hooks";
 const Rut = () => {
   const router = useRouter();
 
-  const { setFooterButtons, activity } = useUI();
+  const { setFooterButtons, activity, option } = useUI();
 
   const [showLoading, setShowLoading] = useState(false);
 
   const handleConfirm = () => {
     setShowLoading(true);
     setTimeout(() => {
-      router.push(activity === "cdt" ? "/activities" : "/samplingOrders");
+      if (activity === "lab" && option === "samplings") {
+        router.push("/samplingOrders");
+      } else {
+        router.push("/activities");
+      }
       setShowLoading(false);
     }, 2000);
   };

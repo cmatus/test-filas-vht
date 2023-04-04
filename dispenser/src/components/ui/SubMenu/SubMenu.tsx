@@ -1,5 +1,9 @@
 import { useRouter } from "next/router";
 
+import { DATOS_PACIENTE } from "@/data/mockups/cdt";
+import { samplingOrder } from "@/data/mockups/laboratory";
+import { isSenior } from "@/utils/isSenior";
+
 import styles from "./SubMenu.module.scss";
 
 import { useUI } from "@/store/hooks";
@@ -37,8 +41,16 @@ const SubMenuOption = ({ data }: ISubMenuOption) => {
 
   const handleClick = (data: IOption) => {
     setOption(data.name);
+    if (data.name === ("scheduleSamplings" || "scheduleResults")) {
+      if (isSenior(samplingOrder.resultado.solicitudes[16948832][0])) {
+        return router.push("/ticket");
+      } else {
+        return router.push("/preferential");
+      }
+    }
     router.push(data.path);
   };
+
   return (
     <div className={styles.subMenuOption} onClick={() => handleClick(data)}>
       {data.text}

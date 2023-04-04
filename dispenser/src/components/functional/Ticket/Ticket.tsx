@@ -24,6 +24,11 @@ const Ticket = () => {
       map[option.name] = option;
       return map;
     }, {});
+    if (optionMap[option].activity === "pharmacy") {
+      return setSelectedOption({
+        text: "FARMACIA",
+      });
+    }
     setSelectedOption(optionMap[option]);
   }, []);
 

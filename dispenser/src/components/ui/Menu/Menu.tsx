@@ -5,7 +5,7 @@ import styles from "./Menu.module.scss";
 import { useUI } from "@/store/hooks";
 
 interface IOption {
-  name: "cdt" | "lab" | "farmacy";
+  name: "cdt" | "lab" | "pharmacy";
   text: string;
   icon: string;
   path: string;

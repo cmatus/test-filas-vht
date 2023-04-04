@@ -20,6 +20,11 @@ const Rut = () => {
     setTimeout(() => {
       if (activity === "lab" && option === "samplings") {
         router.push("/samplingOrders");
+      } else if (activity === "pharmacy" && option !== "pharmacyNormalRecipe") {
+        router.push({
+          pathname: "/additional",
+          query: { type: "rut" },
+        });
       } else {
         router.push("/activities");
       }

@@ -7,7 +7,7 @@ import { useUI } from "@/store/hooks";
 import styles from "./MainMenu.module.scss";
 
 interface IOption {
-  name: "cdt" | "lab" | "farmacy";
+  name: "cdt" | "lab" | "pharmacy";
   text: string;
   icon: string;
   path: string;
@@ -27,7 +27,7 @@ const menuOptions: IOption[] = [
     path: "/rut",
   },
   {
-    name: "farmacy",
+    name: "pharmacy",
     text: "FARMACIA",
     icon: "farmacia.png",
     path: "/activities",

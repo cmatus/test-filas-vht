@@ -44,19 +44,19 @@ export const activitiesOptions = [
   {
     name: "pharmacyRut",
     text: "INGRESO CON RUT",
-    activity: "farmacy",
+    activity: "pharmacy",
     path: "/rut",
   },
   {
     name: "pharmacyRecipeNumber",
     text: "INGRESO CON NÚMERO DE RECETA",
-    activity: "farmacy",
+    activity: "pharmacy",
     path: "",
   },
   {
     name: "pharmacyNormalRecipe",
     text: "RECETA MANUAL",
-    activity: "farmacy",
+    activity: "pharmacy",
     path: "",
   },
 ];

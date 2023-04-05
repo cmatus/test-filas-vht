@@ -5,20 +5,25 @@ import styles from "./Menu.module.scss";
 import { useUI } from "@/store/hooks";
 
 interface IOption {
-  name: "cdt" | "lab" | "pharmacy";
-  text: string;
-  icon: string;
-  path: string;
+  name: "cdt" | "lab" | "pharmacy"; // El nombre de la opción.
+  text: string; // El texto que se muestra en la opción.
+  icon: string; // El nombre del archivo de la imagen que se muestra en la opción.
+  path: string; // La ruta a la que se redirige al hacer click en la opción.
 }
 
 interface IMenu {
-  options: IOption[];
+  options: IOption[]; // Las opciones del menú.
 }
 
 interface IMenuOption {
-  data: IOption;
+  data: IOption; // Los datos de la opción del menú.
 }
 
+/**
+ * Componente de React que representa el menú.
+ * @param {IMenu} props - Propiedades que recibe el componente.
+ * @returns {JSX.Element} Componente del menú.
+ */
 const Menu = ({ options }: IMenu) => {
   return (
     <div className={styles.menu}>
@@ -29,11 +34,20 @@ const Menu = ({ options }: IMenu) => {
   );
 };
 
+/**
+ * Componente de React que representa una opción del menú.
+ * @param {IMenuOption} props - Propiedades que recibe el componente.
+ * @returns {JSX.Element} Componente de la opción del menú.
+ */
 const MenuOption = ({ data }: IMenuOption) => {
   const router = useRouter();
 
   const { setActivity } = useUI();
 
+  /**
+   * Maneja el evento 'click' de la opción del menú.
+   * @param {IOption} data - Datos de la opción del menú.
+   */
   const handleClick = (data: IOption) => {
     setActivity(data.name);
     router.push(data.path);

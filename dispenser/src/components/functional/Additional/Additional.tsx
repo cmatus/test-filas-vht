@@ -1,13 +1,17 @@
 import { useRouter } from "next/router";
 
-import { DATOS_PACIENTE } from "@/data/mockups/cdt";
-
 import styles from "./Additional.module.scss";
 
 import { useUI } from "@/store/hooks";
 import Image from "next/image";
 import { useEffect } from "react";
 
+/**
+ * Componente que consulta al usuario si desea agregar un rut o número de receta adicional.
+ * @param {Object} props - Propiedades del componente.
+ * @param {string} props.type - Tipo de rut o número de receta adicional.
+ * @returns {JSX.Element} - El componente de React.
+ */
 const Additional = () => {
   const router = useRouter();
 

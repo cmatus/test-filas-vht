@@ -1,27 +1,28 @@
 import { useRouter } from "next/router";
 
-import { DATOS_PACIENTE } from "@/data/mockups/cdt";
-import { samplingOrder } from "@/data/mockups/laboratory";
-import { isSenior } from "@/utils/isSenior";
-
 import styles from "./SubMenu.module.scss";
 
 import { useUI } from "@/store/hooks";
 interface IOption {
-  name: string;
-  text: string;
-  activity: string;
-  path: string;
+  name: string; // El nombre de la opción.
+  text: string; // El texto que se muestra en la opción.
+  activity: string; // El nombre de la actividad a la que pertenece la opción.
+  path: string; // La ruta a la que se redirige al hacer click en la opción.
 }
 
 interface ISubMenu {
-  options?: IOption[];
+  options?: IOption[]; // Las opciones del submenú.
 }
 
 interface ISubMenuOption {
-  data: IOption;
+  data: IOption; // Los datos de la opción del submenú.
 }
 
+/**
+ * Componente de React que representa el submenú.
+ * @param {ISubMenu} props - Propiedades que recibe el componente.
+ * @returns {JSX.Element} Componente del submenú.
+ */
 const SubMenu = ({ options }: ISubMenu) => {
   return (
     <div className={styles.subMenu}>
@@ -34,6 +35,11 @@ const SubMenu = ({ options }: ISubMenu) => {
   );
 };
 
+/**
+ * Componente de React que representa una opción del submenú.
+ * @param {ISubMenuOption} props - Propiedades que recibe el componente.
+ * @returns {JSX.Element} Componente de la opción del submenú.
+ */
 const SubMenuOption = ({ data }: ISubMenuOption) => {
   const router = useRouter();
 
@@ -54,13 +60,28 @@ const SubMenuOption = ({ data }: ISubMenuOption) => {
   );
 };
 
+/**
+ * Componente de React que representa la opción de confirmar examen del submenú.
+ * @returns {JSX.Element} Componente de la opción de confirmar examen del submenú.
+ */
 const SubMenuConfirmExam = () => {
+  const router = useRouter();
   return (
     <div className={styles.buttonContainer}>
       <h3>¿Desea realizar el examen seleccionado?</h3>
       <div className={styles.buttonWrapper}>
-        <button className={styles.confirmButton}>Si</button>
-        <button className={styles.cancelButton}>No</button>
+        <button
+          className={styles.confirmButton}
+          onClick={() => router.push("/preferential")}
+        >
+          Si
+        </button>
+        <button
+          className={styles.cancelButton}
+          onClick={() => router.push("/")}
+        >
+          No
+        </button>
       </div>
     </div>
   );

@@ -37,7 +37,7 @@ const SamplingOrders = () => {
     });
 
   const handleClickOrder = () => {
-    router.push("/preferential");
+    router.push("/confirmExam");
   };
 
   useEffect(() => {

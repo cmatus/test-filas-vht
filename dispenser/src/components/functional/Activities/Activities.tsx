@@ -8,6 +8,10 @@ import { useUI } from "@/store/hooks";
 
 import styles from "./Activities.module.scss";
 
+/**
+ * Componente principal para la sección de actividades
+ * @returns {JSX.Element}
+ */
 const Activities = () => {
   const { setFooterButtons, activity } = useUI();
 

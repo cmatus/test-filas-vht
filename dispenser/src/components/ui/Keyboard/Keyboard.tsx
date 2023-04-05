@@ -6,43 +6,54 @@ import { rutValidate, isValidRut } from "@/utils/validations";
 import styles from "./Keyboard.module.scss";
 
 interface IKeyboard {
-  type?: string;
-  maxlength?: number;
-  onClick?: any;
+  type?: string; // El tipo de teclado que se debe mostrar.
+  maxlength?: number; // El número máximo de caracteres que se pueden ingresar.
+  onClick?: () => void; // Función que se ejecuta cuando se presiona un botón.
 }
 
+/**
+ * Componente para mostrar un teclado numérico que permite ingresar valores como el RUT o el número de receta.
+ * @param {IKeyboard} props - Propiedades del teclado.
+ * @returns {JSX.Element} Elemento React que muestra el teclado.
+ */
 const Keyboard = ({ type = "rut", maxlength = 9, onClick }: IKeyboard) => {
   const [textValue, setTextValue] = useState("");
   const [isEnabledConfirm, setIsEnabledConfirm] = useState(false);
 
+  const isRutType = type === "rut";
+  const isRecipeType = type === "recipe";
+
+  /**
+   * Maneja el evento click de un botón del teclado.
+   * @param {string} char - Carácter que se ha pulsado.
+   */
   const handleClickChar = (char: string) => {
-    if (type === "rut") {
-      if (unFormatRut(textValue).length < maxlength) {
-        return setTextValue(formatRut(textValue + char));
-      }
+    if (isRutType && unFormatRut(textValue).length < maxlength) {
+      return setTextValue(formatRut(textValue + char));
     }
-    if (type === "recipe") {
-      if (textValue.length < maxlength) {
-        return setTextValue(textValue + char);
-      }
+    if (isRecipeType && textValue.length < maxlength) {
+      return setTextValue(textValue + char);
     }
   };
 
+  /**
+   * Maneja el evento click del botón "x" (borrar).
+   */
   const handleClickDelete = () => {
     setTextValue("");
   };
 
   useEffect(() => {
-    if (type === "rut") {
+    if (isRutType) {
       setIsEnabledConfirm(
         isValidRut(unFormatRut(textValue)) &&
           rutValidate(unFormatRut(textValue))
       );
     }
-    if (type === "recipe") {
+    if (isRecipeType) {
       setIsEnabledConfirm(true);
     }
-  }, [textValue]);
+  }, [textValue, isRutType, isRecipeType]);
 
   return (
     <div className={styles.keyboard}>

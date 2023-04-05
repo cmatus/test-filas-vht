@@ -9,6 +9,10 @@ import styles from "./ClinicReferral.module.scss";
 import { useUI } from "@/store/hooks";
 import SubMenu from "@/components/ui/SubMenu";
 
+/**
+ * Componente que muestra las opciones de derivación
+ * @returns {JSX.Element} - El componente de React.
+ */
 const ClinicReferral = () => {
   const { setFooterButtons } = useUI();
 

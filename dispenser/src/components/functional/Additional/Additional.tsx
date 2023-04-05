@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 
 import styles from "./Additional.module.scss";
 
-import { useUI } from "@/store/hooks";
+import { usePharmacy, useUI } from "@/store/hooks";
 import Image from "next/image";
 import { useEffect } from "react";
 
@@ -16,7 +16,21 @@ const Additional = () => {
   const router = useRouter();
 
   const { type } = router.query;
-  const { setFooterButtons, option } = useUI();
+  const { setFooterButtons } = useUI();
+
+  const handleClick = (type: string) => {
+    if (type === "rut") {
+      router.push({
+        pathname: "/rut",
+        query: { additional: true },
+      });
+    } else if (type === "recipe") {
+      router.push({
+        pathname: "/recipe",
+        query: { additional: true },
+      });
+    }
+  };
 
   useEffect(() => {
     setFooterButtons(["back", "home", "exit"]);
@@ -52,9 +66,7 @@ const Additional = () => {
       <div className={styles.buttonWrapper}>
         <button
           className={styles.confirmButton}
-          onClick={() => {
-            type === "rut" ? router.push("/rut") : router.push("/recipe");
-          }}
+          onClick={() => handleClick(type as string)}
         >
           SI
         </button>

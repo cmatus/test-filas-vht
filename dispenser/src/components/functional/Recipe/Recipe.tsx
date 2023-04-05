@@ -2,22 +2,31 @@ import { useEffect, Fragment, useState } from "react";
 import { useRouter } from "next/router";
 
 import { samplingOrder } from "@/data/mockups/laboratory";
+import { RECETAS } from "@/data/mockups/farmacy";
 
 import Keyboard from "@/components/ui/Keyboard";
 import Loading from "@/components/ui/Loading";
 
-import { useUI } from "@/store/hooks";
+import { usePharmacy, useUI } from "@/store/hooks";
 
 const Recipe = () => {
   const router = useRouter();
 
-  const { setFooterButtons, activity, option } = useUI();
+  const { additional } = router.query;
+
+  const { setFooterButtons } = useUI();
+  const { setRecipe, addRecipe } = usePharmacy();
 
   const [showLoading, setShowLoading] = useState(false);
 
   const handleConfirm = () => {
     setShowLoading(true);
     setTimeout(() => {
+      if (!additional) {
+        setRecipe(RECETAS);
+      } else {
+        addRecipe(RECETAS[0]);
+      }
       router.push({
         pathname: "/additional",
         query: { type: "recipe" },

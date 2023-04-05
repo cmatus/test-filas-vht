@@ -26,7 +26,7 @@ const SamplingOrders = () => {
   const { setFooterButtons } = useUI();
 
   const dataOptions: IOption[] =
-    samplingOrder.resultado.solicitudes[16948832].map((item) => {
+    samplingOrder.resultado.solicitudes[16948832]?.map((item) => {
       return {
         name: "",
         text: ReactHtmlParser(
@@ -51,7 +51,7 @@ const SamplingOrders = () => {
         <br />
         SERGIO FLORES DURAN
       </h1>
-      {samplingOrder.resultado.solicitud.length > 0 ? (
+      {Object.keys(samplingOrder.resultado.solicitudes)?.length > 0 ? (
         <>
           <h2>Tiene los siguientes exámenes por realizar</h2>
           <OptionSelect options={dataOptions} />

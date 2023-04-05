@@ -1,7 +1,6 @@
 export const samplingOrder = {
   validacion: "003",
   resultado: {
-    //solicitud: [],
     solicitud: [1297137, 1297138],
     solicitudes: {
       "16948832": [

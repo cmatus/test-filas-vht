@@ -1,4 +1,4 @@
-export interface IUser {
+export interface ICDTUser {
   PERSONA_ID: number | null;
   RUT: string;
   DV: string;

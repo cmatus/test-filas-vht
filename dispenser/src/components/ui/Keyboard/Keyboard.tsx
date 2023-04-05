@@ -9,6 +9,8 @@ interface IKeyboard {
   type?: string; // El tipo de teclado que se debe mostrar.
   maxlength?: number; // El número máximo de caracteres que se pueden ingresar.
   onClick?: () => void; // Función que se ejecuta cuando se presiona un botón.
+  setTextValue: (text: string) => void; // Función que se ejecuta cuando se presiona un botón.
+  textValue: string; // El texto que se muestra en el teclado.
 }
 
 /**
@@ -16,8 +18,13 @@ interface IKeyboard {
  * @param {IKeyboard} props - Propiedades del teclado.
  * @returns {JSX.Element} Elemento React que muestra el teclado.
  */
-const Keyboard = ({ type = "rut", maxlength = 9, onClick }: IKeyboard) => {
-  const [textValue, setTextValue] = useState("");
+const Keyboard = ({
+  type = "rut",
+  maxlength = 9,
+  onClick,
+  setTextValue,
+  textValue,
+}: IKeyboard) => {
   const [isEnabledConfirm, setIsEnabledConfirm] = useState(false);
 
   const isRutType = type === "rut";

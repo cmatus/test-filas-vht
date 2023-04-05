@@ -12,6 +12,7 @@ import Loading from "@/components/ui/Loading";
 import { usePharmacy, useUI } from "@/store/hooks";
 
 const Rut = () => {
+  const [rut, setRut] = useState("");
   const router = useRouter();
 
   const { additional } = router.query;
@@ -57,7 +58,7 @@ const Rut = () => {
   return (
     <Fragment>
       <h2>Por favor ingrese su Rut</h2>
-      <Keyboard onClick={handleConfirm} />
+      <Keyboard onClick={handleConfirm} setTextValue={setRut} textValue={rut} />
       <Loading show={showLoading} />
     </Fragment>
   );

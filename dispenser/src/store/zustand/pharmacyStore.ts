@@ -1,16 +1,16 @@
 import { create } from "zustand";
 
-import { IUser } from "@/interfaces/pharmacyUser";
+import { ICDTUser } from "@/interfaces/cdtUser";
 import { IRecipe } from "@/interfaces/recipe";
 
 interface userState {
-  user: IUser[];
+  user: ICDTUser[];
   recipe: IRecipe[];
   isLoading: boolean;
   isError: boolean;
   error: string;
-  setUser: (user: IUser[]) => void;
-  addUser: (user: IUser) => void;
+  setUser: (user: ICDTUser[]) => void;
+  addUser: (user: ICDTUser) => void;
   setRecipe: (recipe: IRecipe[]) => void;
   addRecipe: (recipe: IRecipe) => void;
 }
@@ -84,11 +84,11 @@ export const pharmacyStore = create<userState>((set) => ({
   isError: false,
   error: "",
 
-  setUser: (user: IUser[]) => {
+  setUser: (user: ICDTUser[]) => {
     set({ user });
   },
 
-  addUser: (user: IUser) => {
+  addUser: (user: ICDTUser) => {
     set((state) => ({
       user: [...state.user, user],
     }));

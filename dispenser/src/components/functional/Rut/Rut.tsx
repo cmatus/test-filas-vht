@@ -19,14 +19,13 @@ const Rut = () => {
   const handleConfirm = () => {
     setShowLoading(true);
     setTimeout(() => {
-      if (option === ("scheduleSamplings" || "scheduleResults")) {
+      if (["scheduleSamplings", "scheduleResults"].includes(option)) {
         if (isSenior(samplingOrder.resultado.solicitudes[16948832][0])) {
-          return router.push("/ticket");
+          router.push("/ticket");
         } else {
-          return router.push("/preferential");
+          router.push("/preferential");
         }
-      }
-      if (activity === "lab" && option === "samplings") {
+      } else if (activity === "lab" && option === "samplings") {
         router.push("/samplingOrders");
       } else if (activity === "pharmacy" && option !== "pharmacyNormalRecipe") {
         router.push({
@@ -36,6 +35,7 @@ const Rut = () => {
       } else {
         router.push("/activities");
       }
+
       setShowLoading(false);
     }, 2000);
   };

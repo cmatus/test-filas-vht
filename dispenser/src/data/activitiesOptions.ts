@@ -102,3 +102,24 @@ export const otherRequests = [
     path: "/directions",
   },
 ];
+
+export const otherOptions = [
+  {
+    name: "deliverSamplings",
+    text: "ENTREGAR MUESTRAS",
+    activity: "lab",
+    path: "/preferential",
+  },
+  {
+    name: "retakeSampling",
+    text: "TOMARSE UNA NUEVA MUESTRA",
+    activity: "lab",
+    path: "/preferential",
+  },
+  {
+    name: "otherQueries",
+    text: "OTRAS CONSULTAS",
+    activity: "lab",
+    path: "/preferential",
+  },
+];

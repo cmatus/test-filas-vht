@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 
 import OptionSelect from "@/components/ui/OptionSelect";
 
+import { otherOptions } from "@/data/activitiesOptions";
 import { samplingOrder } from "../../../data/mockups/laboratory";
 
 import styles from "./SamplingOrders.module.scss";
@@ -18,27 +19,6 @@ interface IOption {
   path?: string;
   onClick?: any;
 }
-
-const otherOptions = [
-  {
-    name: "deliverSamplings",
-    text: "ENTREGAR MUESTRAS",
-    activity: "lab",
-    path: "/preferential",
-  },
-  {
-    name: "retakeSampling",
-    text: "TOMARSE UNA NUEVA MUESTRA",
-    activity: "lab",
-    path: "/preferential",
-  },
-  {
-    name: "otherQueries",
-    text: "OTRAS CONSULTAS",
-    activity: "lab",
-    path: "/preferential",
-  },
-];
 
 const SamplingOrders = () => {
   const router = useRouter();

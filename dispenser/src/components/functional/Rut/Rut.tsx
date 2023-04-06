@@ -2,14 +2,14 @@ import { useEffect, Fragment, useState } from "react";
 import { useRouter } from "next/router";
 
 import { DATOS_PACIENTE } from "@/data/mockups/farmacy";
-
 import { samplingOrder } from "@/data/mockups/laboratory";
 import { isSenior } from "@/utils/isSenior";
+import { formatRutRequest } from "@/utils/format";
 
 import Keyboard from "@/components/ui/Keyboard";
 import Loading from "@/components/ui/Loading";
 
-import { usePharmacy, useUI } from "@/store/hooks";
+import { useCDT, useLab, usePharmacy, useUI } from "@/store/hooks";
 
 const Rut = () => {
   const [rut, setRut] = useState("");
@@ -18,7 +18,9 @@ const Rut = () => {
   const { additional } = router.query;
 
   const { setFooterButtons, activity, option } = useUI();
-  const { setUser, addUser } = usePharmacy();
+  const { getLabData, labData } = useLab();
+  const { setUser, addUser, getData: getPharmacyData } = usePharmacy();
+  const { getData: getCDTData } = useCDT();
 
   const [showLoading, setShowLoading] = useState(false);
 
@@ -32,10 +34,13 @@ const Rut = () => {
           router.push("/preferential");
         }
       } else if (activity === "lab" && option === "samplings") {
-        router.push("/samplingOrders");
+        getLabData("1", formatRutRequest(rut));
+        router.push("/samplingOrders", {
+          query: { rut: formatRutRequest(rut) },
+        });
       } else if (activity === "pharmacy" && option !== "pharmacyNormalRecipe") {
         if (!additional) {
-          setUser(DATOS_PACIENTE);
+          getPharmacyData(formatRutRequest(rut));
         } else {
           addUser(DATOS_PACIENTE[0]);
         }
@@ -44,6 +49,7 @@ const Rut = () => {
           query: { type: "rut" },
         });
       } else {
+        getCDTData(formatRutRequest(rut));
         router.push("/activities");
       }
 

@@ -47,6 +47,8 @@ const SubMenuOption = ({ data }: ISubMenuOption) => {
 
   const handleClick = (data: IOption) => {
     setOption(data.name);
+    if (data.name === "scheduledEntry") {
+    }
     if (data.name === "emergencyClinicWithReferral") {
       return router.push("/preferential");
     }

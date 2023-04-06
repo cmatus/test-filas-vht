@@ -4,7 +4,7 @@ import SubMenu from "@/components/ui/SubMenu";
 
 import { activitiesOptions } from "@/data/activitiesOptions";
 
-import { useUI } from "@/store/hooks";
+import { useCDT, useUI } from "@/store/hooks";
 
 import styles from "./Activities.module.scss";
 
@@ -14,7 +14,9 @@ import styles from "./Activities.module.scss";
  */
 const Activities = () => {
   const { setFooterButtons, activity } = useUI();
+  const { user } = useCDT();
 
+  console.log(user);
   useEffect(() => {
     setFooterButtons(["back", "home", "exit"]);
   }, []);

@@ -1,9 +1,12 @@
 import { create } from "zustand";
 
+import { apiInstance } from "@/utils/api";
+import { pharmacyConfig } from "@/utils/config";
+
 import { ICDTUser } from "@/interfaces/cdtUser";
 import { IRecipe } from "@/interfaces/recipe";
 
-interface userState {
+interface pharmacyState {
   user: ICDTUser[];
   recipe: IRecipe[];
   isLoading: boolean;
@@ -13,6 +16,7 @@ interface userState {
   addUser: (user: ICDTUser) => void;
   setRecipe: (recipe: IRecipe[]) => void;
   addRecipe: (recipe: IRecipe) => void;
+  getData: (rut: string) => void;
 }
 
 const initDataUser = [
@@ -77,7 +81,7 @@ const initDataRecipe = [
   },
 ];
 
-export const pharmacyStore = create<userState>((set) => ({
+export const pharmacyStore = create<pharmacyState>((set) => ({
   user: initDataUser,
   recipe: initDataRecipe,
   isLoading: false,
@@ -102,5 +106,30 @@ export const pharmacyStore = create<userState>((set) => ({
     set((state) => ({
       recipe: [...state.recipe, recipe],
     }));
+  },
+
+  getData: async (rut: string) => {
+    set((state) => ({ ...state, isLoading: true }));
+    try {
+      const targetUrl = `${pharmacyConfig.server}/totem_hhha/recetas/obtener/rut/${rut}/establecimiento_id/${pharmacyConfig.establishmentId}/format/json`;
+      const response = await apiInstance.get("/proxy", {
+        headers: {
+          "x-target-url": targetUrl,
+          "X-Api-Key": pharmacyConfig.apiKey,
+        },
+      });
+      const data = response.data;
+      console.log(data);
+      set((state) => ({
+        ...state,
+        user: data,
+        recipe: data,
+        isLoading: false,
+      }));
+    } catch (error: any) {
+      set((state) => ({ ...state, isLoading: false, isError: true, error }));
+    } finally {
+      set((state) => ({ ...state, isLoading: false }));
+    }
   },
 }));

@@ -11,7 +11,13 @@ const usePharmacy = () => {
     })
   );
 
-  const { setUser, addUser, setRecipe, addRecipe } = pharmacyStore();
+  const {
+    setUser,
+    addUser,
+    setRecipe,
+    addRecipe,
+    getPharmacyData: getData,
+  } = pharmacyStore();
 
   return {
     user,
@@ -23,6 +29,7 @@ const usePharmacy = () => {
     isLoading,
     isError,
     error,
+    getData,
   };
 };
 

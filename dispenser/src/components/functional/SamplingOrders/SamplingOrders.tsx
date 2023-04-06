@@ -10,7 +10,7 @@ import { samplingOrder } from "../../../data/mockups/laboratory";
 import styles from "./SamplingOrders.module.scss";
 import SubMenu from "@/components/ui/SubMenu";
 
-import { useUI } from "@/store/hooks";
+import { useLab, useUI } from "@/store/hooks";
 
 interface IOption {
   name: string;
@@ -23,10 +23,15 @@ interface IOption {
 const SamplingOrders = () => {
   const router = useRouter();
 
-  const { setFooterButtons } = useUI();
+  const { rut } = router.query;
+  const queryRut = rut?.slice(-2) as string;
 
+  const { setFooterButtons } = useUI();
+  const { labData, error } = useLab();
+
+  console.log(error);
   const dataOptions: IOption[] =
-    samplingOrder.resultado.solicitudes[16948832]?.map((item) => {
+    labData?.resultado?.solicitudes[queryRut]?.map((item: any) => {
       return {
         name: "",
         text: ReactHtmlParser(
@@ -34,7 +39,7 @@ const SamplingOrders = () => {
         ),
         onClick: () => handleClickOrder(),
       };
-    });
+    }) || [];
 
   const handleClickOrder = () => {
     router.push("/confirmExam");
@@ -51,7 +56,7 @@ const SamplingOrders = () => {
         <br />
         SERGIO FLORES DURAN
       </h1>
-      {Object.keys(samplingOrder.resultado.solicitudes)?.length > 0 ? (
+      {labData && Object.keys(labData.resultado?.solicitudes)?.length > 0 ? (
         <>
           <h2>Tiene los siguientes exámenes por realizar</h2>
           <OptionSelect options={dataOptions} />

@@ -17,7 +17,9 @@ const Additional = () => {
 
   const { type } = router.query;
   const { setFooterButtons } = useUI();
+  const { user } = usePharmacy();
 
+  console.log(user);
   const handleClick = (type: string) => {
     if (type === "rut") {
       router.push({

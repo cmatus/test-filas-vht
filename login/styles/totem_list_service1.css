@@ -1,0 +1,73 @@
+.main-logo {
+	margin-top: 60px;
+}
+
+.services-container{
+	padding: 10px;
+	text-align: center;
+}
+
+.service-item-button > .panel-body{
+	box-shadow: 0 1px 0.6px 0.5px rgba(102, 125, 157, 0.75);
+}
+
+.service-item-container{
+	height: 100px;
+	line-height: 0px;
+	padding: 0px 20px 0 20px;
+	width: 100%;
+	text-align: center;
+	font-size: 40px;
+	font-weight: bold;
+}
+
+.service-item{
+	display: inline-block;
+	line-height: normal;
+	vertical-align: middle;
+	
+	font-family: 'Roboto';
+}
+
+.services-rut-container{
+	border: none;
+	border-radius: 15px;
+	box-shadow: 2px 5px 20px 0 rgba(102, 125, 157, 0.75);
+
+	font-family: 'Roboto';
+	font-size: 50px;
+	font-weight: 500;
+
+	height: 90px;
+	padding: 15px;
+	padding-left: 30px;
+}
+
+.rut-container {
+	padding-top: 30px;
+}
+
+.panel-custom {
+	margin-bottom: 20px;
+	border-radius: 15px;
+	border: none;
+	box-shadow: 2px 5px 20px 0 rgba(102, 125, 157, 0.75);
+
+	height: 80px;
+	line-height: 0px;
+	padding: 20px 20px 20px 20px;
+	width: 100%;
+	text-align: center;
+	font-size: 40px;
+	font-weight: bold;
+
+	display: inline-block;
+	line-height: normal;
+	vertical-align: middle;
+	
+	font-family: 'Roboto';
+}
+
+.border {
+	border: 1px solid red;
+}

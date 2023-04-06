@@ -1,0 +1,99 @@
+body{
+  background-color: #023341;
+}
+
+.left-side{
+  padding-left: 0px;
+  padding-right: 0;
+}
+
+.right-side{
+  height: 100vh;
+  width: 50%;
+  padding-right: 0;
+}
+
+.right-side img{
+  height: 100vh;
+  width: 100%;
+}
+
+#current-number-panel{
+  margin-top: 0vh;/*antes 2vh*/
+  border: none;
+}
+
+#current-number-panel .panel-heading{ 
+  font-size: 3vh;
+  text-align: center;
+  padding-top: 2vh;
+  height: 8vh;
+  background-color: #2b576f;
+  color: #FFFFFF;
+  font-weight: bold;
+}
+
+#current-number-panel .panel-body {    
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+#current-number-panel .panel-body .current-title{ 
+  font-size: 3vh;
+  text-align: center;
+  margin-top: 1vh;
+}
+
+#current-number-panel .panel-body .current-value{ 
+  font-weight: bold;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 0;
+  height: 16vh;
+  line-height: 18vh;
+  color: #023341;
+}
+
+@media screen and (max-height: 1200px){    
+  #current-number-panel .panel-body .current-value {
+    font-size: 14vh;
+    }
+}
+
+@media screen and (min-height: 1201px){
+  #current-number-panel .panel-body .current-value {
+    font-size: 200px;
+    }
+}
+
+#last-calls-title{
+  font-size: 3vh; 
+  margin-top: 3vh;
+  color: white;
+}
+
+#last-calls-table{
+  text-align: center;
+  margin-bottom: 0;
+}
+
+#last-calls-table th{
+  background-color: #6d8290;
+  font-size: 3vh;
+  line-height: 2vh;
+  font-weight: normal;
+  color: white;
+  height: 8vh;  
+  text-align: center;
+}
+
+#last-calls-table tbody tr{
+  height: 13vh;
+  background-color: #eaf3f7;
+  font-size: 7vh;
+  color: #023341;
+}
+
+.td-bold{
+  font-weight: bold;
+}

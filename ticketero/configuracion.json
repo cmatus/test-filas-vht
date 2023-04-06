@@ -1,0 +1,18 @@
+{
+  "userData" : {
+    "type" : "rut",
+    "status" : true
+  },
+  "layout" : {
+    "companyLogo" : true,
+    "columnsNumber" : 1,
+    "iconWidth" : "480px",
+    "iconHeight" : "120px",
+    "backgroundColor" : "none",
+    "backgroundImage" : true
+
+  },
+  "ticket" : {
+    "ticketsPorDelante" : true
+  }
+}

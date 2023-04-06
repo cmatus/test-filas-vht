@@ -1,0 +1,6 @@
+{
+	"ip_api": "127.0.0.1",
+	"puerto_api": 3000,
+	"pueto_api_socket": 3001,
+	"tiempo_session": 300000
+}

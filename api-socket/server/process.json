@@ -1,0 +1,11 @@
+{
+  apps : [{
+    name        : "api-socket",
+    script      : "./server/main.js",
+    instances: 2,
+    env: {
+      "PORT": "3001"
+    }
+  }]
+}
+

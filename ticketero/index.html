@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Sistema de filas - Vigatec</title>
+    <link rel='stylesheet' href='styles/style.css' />
+    <link rel='stylesheet' href='styles/estilos.css' />
+    <link rel="stylesheet" href="styles/font-awesome/css/font-awesome.min.css">
+    <link href="styles/bootstrap.css" rel="stylesheet" type="text/css">
+    <!--link href="styles/fonts.css" rel="stylesheet" type="text/css"-->
+    <link href="styles/totem.css" rel="stylesheet" type="text/css">
+    <link href="styles/totem_list_service1.css" rel="stylesheet" type="text/css"> 
+    <!-- conexión con sistema central de gestión de filas via socket -->
+    <script src="javascripts/socket.io.js" type="text/javascript"></script>
+
+    <!-- conexión con sistema central de gestión de filas via socket -->
+
+    <style type="text/css">
+
+    </style>
+      <link href="styles/show_generated_ticket_screen1.css" rel="stylesheet" media="screen">
+      <link href="styles/show_generated_ticket_print1.css" rel="stylesheet" media="print">
+      <script src="javascripts/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+      <script src="javascripts/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+      <script src="javascripts/jquery.Rut.js" type="text/javascript" charset="utf-8"></script>
+      <script src="javascripts/totem.js" type="text/javascript" charset="utf-8"></script>
+      <script src="javascripts/funciones.js" type="text/javascript" charset="utf-8"></script>
+      <script type="text/javascript" src="javascripts/jquery-barcode.min.js"></script>
+
+  </head>
+  <body id="body" oncontextmenu="return false" onselectstart="return false" ondragstart="return false">
+      <script>
+        //location.href ="http://localhost:3000/test/5";
+      </script>
+
+        <div  id="contenedorMenu" class="contenedor_100">
+          <!--<div class="contenedor_5" align="center">
+          </div>-->
+          <div class="contenedor_5" align="center">
+          </div>
+          <div id="contenedorLogoTotem" class="contenedor_10 hide-for-print" align="center" style="height:12%; padding: 30px 0 0 0;">
+            
+          </div>
+          <div class="contenedor_5" align="center">
+          </div>
+
+          <div id="motivos-container">
+            <div class="contenedor_5" align="center">
+              	<h2 class="text-center instruccion1">Selecciona un motivo<br>de atención</h2>
+		<h1 id="motivos-fecha" class="text-center instruccion2">Fecha actual</h1>   
+            </div>
+            <div class="contenedor_60" align="center">
+              <div id="panelMotivos" class="contenedor_100 col-xs-12 col-md-12 services-container">
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-md-offset-3 rut-container" id="rut-container">
+		
+	    <div class="rut-header">BIENVENIDO A LA COMISIÓN<BR>MÉDICA METROPOLITANA</div>
+		
+            <div class="col-md-12" style="margin-bottom: 15px;">
+              <input style="width:100%;" class="services-rut-container" name="rut-container2" id="rut-container2" value="" placeholder="Ingrese su RUT" type="text">
+              <input name="rut-container" id="rut-container" value="" type="hidden">
+            </div>
+  
+            <div class="col-xs-4 col-md-4">
+              <div class="panel-custom pad-extra" onclick="addRut(1);">
+                <a class="pad-extra">
+                  1
+                </a>
+              </div>
+            </div>
+            <div class="col-xs-4 col-md-4">
+              <div class="panel-custom pad-extra" onclick="addRut(2);">
+                <a class="pad-extra">
+                  2
+                </a>
+              </div>
+            </div>
+            <div class="col-xs-4 col-md-4">
+              <div class="panel-custom pad-extra" onclick="addRut(3);">
+                <a class="pad-extra">
+                  3
+                </a>
+              </div>
+            </div>
+            <div class="col-xs-4 col-md-4">
+              <div class="panel-custom pad-extra" onclick="addRut(4);">
+                <a class="pad-extra">
+                  4
+                </a>
+              </div>
+            </div>
+            <div class="col-xs-4 col-md-4">
+              <div class="panel-custom pad-extra" onclick="addRut(5);">
+                <a class="pad-extra">
+                  5
+                </a>
+              </div>
+            </div>
+            <div class="col-xs-4 col-md-4">
+              <div class="panel-custom pad-extra" onclick="addRut(6);">
+                <a class="pad-extra">
+                  6
+                </a>
+              </div>
+            </div>
+            <div class="col-xs-4 col-md-4">
+              <div class="panel-custom pad-extra" onclick="addRut(7);">
+                <a class="pad-extra">
+                  7
+                </a>
+              </div>
+            </div>
+            <div class="col-xs-4 col-md-4">
+              <div class="panel-custom pad-extra" onclick="addRut(8);">
+                <a class="pad-extra">
+                  8
+                </a>
+              </div>
+            </div>
+            <div class="col-xs-4 col-md-4">
+              <div class="panel-custom pad-extra" onclick="addRut(9);">
+                <a class="pad-extra">
+                  9
+                </a>
+              </div>
+            </div>
+            <div class="col-xs-4 col-md-4">
+              <div class="panel-custom pad-extra" onclick="addRut('K');">
+                <a class="pad-extra">
+                  K 
+                </a>
+              </div>
+            </div>
+            <div class="col-xs-4 col-md-4">
+              <div class="panel-custom pad-extra" onclick="addRut('0');">
+                <a class="pad-extra">
+                  0
+                </a>
+              </div>
+            </div>
+            <div class="col-xs-4 col-md-4">
+              <div class="panel-custom pad-extra" id="totem-rut-eraser-2" onclick="eraseRut()">
+                <a class="pad-extra">
+                  <span><i class="fa fa-arrow-left" aria-hidden="true"></i></span>
+                </a>
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-12 text-center" style="margin-bottom: 15px;">
+              <button class="panel-custom pad-extra" onclick="verificarRut()">INGRESAR</button>
+            </div>
+          </div>
+
+
+          <div id="contenedorVolverInicio" class="contenedor_10" align="center" type="hidden" style="display:none">
+            <a onclick="mostrarMenu(0);">
+              <div class="col-md-12 bottom-text-container">
+                <button class='btn btn-ruttotem btn-extra'>VOLVER A INICIO</button>
+              </div>
+            </a>
+          </div>
+        </div>
+
+
+            </div>
+          </div>
+        </div>
+
+
+
+        <div class="modal fade" id="modalErrorRut" role="dialog">
+          <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-body">
+                  <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12" align="center" id="">
+                      <label style="font-size: 30px; margin-bottom: 30px;">El rut es incorrecto</label>
+                    </div>
+                    <br><br>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12" align="center">
+                      <button class="btn" style="background-color: #c0bebe; font-size: 20px; padding-left: 30px; padding-right: 30px;" onclick="ocultarModalErrorRut()">Aceptar</button>
+                    </div>
+                  </div>
+                  <br>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+        <div id="contenedorImpresion" class="totem-container" style="display:none">
+          <div id="contenedorLogoTicket" class="col-xs-12 col-md-12 text-center main-logo hide-for-print">
+          </div>
+          <div class="container" style="font-family:Georgia">   
+            <div id="show-media-screen">
+              <div class="col-md-12">
+                  <h1 class="text-center list-service-title">Su número de atención es:</h1> <!--<button id="view-fullscreen">Fullscreen</button>-->
+              </div>
+              <div class="col-xs-12 col-md-5 col-md-offset-1">
+                <div class="element-container panel-extra-services-ticket">
+                  <div class="current-ticket"><span id="labelTicketActual"></span></div>
+                </div>
+              </div>
+              <div class="col-xs-12 col-md-5">
+                <div class="element-container panel-extra-services-sub">
+                  <div class="text-center">
+                    <p class="list-service-subtitle" style="font-weight:bold;">MOTIVO DE ATENCIÓN: </p>
+                    <p class="list-service-subtitle"><span id="labelNombreMotivoActual"></span></p>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="bottom-text-container">
+                    <h2 class="bottom-title text-center">Una vez impreso su número puede tomar asiento.</h2>
+                    <h1 class="bottom-subtitle text-center">¡Gracias por preferirnos!</h1>
+                  </div>
+                </div>
+              </div>
+              <div class="row col-md-6 col-md-offset-3 text-center" type="hidden" style="">
+                <a onclick="mostrarMenu(0);">
+                  <div class="col-md-12 bottom-text-container">
+                    <button class='btn btn-ruttotem btn-extra'>VOLVER A INICIO</button>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div id="show-media-print">
+              <div class="text-center">
+                <div id="contenedorLogoImpresion">
+                </div>
+              </div>
+              <br>
+              <div class="text-center company-address">
+              <!-- Vigatec -->
+              </div>
+              <div class="text-center company-address">
+              </div>
+              <div class="text-center company-address">
+                <!--<p>Oficina Central</p><p>Vigatec 441, Macul</p>-->
+              </div>
+              <div class="text-center">
+                <p class="gtext1">Su número de atención es:</p>
+              </div>
+              <h2 class="text-center" style="font-size:60px"><span id="labelTicketActualImpresion"></span></h2>
+              <div class="text-center">
+                <!--<h2 class="ticket-number">X007</h2>-->
+                <div class="text-center gtext2"><spa id="labelNombreMotivoActualImpresion"></span>
+                </div>
+                <div class="text-center gtext2"><spa id="labelTicketsFila"></span>
+                </div>
+                <div class="text-center">
+                  <p id="mensajeTicketero" class="gtext1"></p>
+                </div>
+                <div class="row marketing">
+                  <div class="current-time-cell">
+                    <!-- <img src="/imgs/icon-clock.png" alt=""> -->
+                    <h4 id="fechaTicket">
+                    </h4>
+                  </div>
+                </div>
+                <div class="row" align="center">
+                  <div class="col-xs-12 col-md-12 col-sm-12" id="barcode" align="center"></div>
+                </div>
+              </div>
+              <br>
+          </div>
+        </div>
+        <div id="loader">
+          <div id="spinner"></div>
+        </div>
+      </div>
+        </div>
+      </div>
+        <script src="javascripts/base.js"></script>
+    </div>
+  </body>
+</html>

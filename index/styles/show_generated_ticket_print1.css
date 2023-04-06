@@ -1,0 +1,86 @@
+@media print {
+
+	a[href]:after {
+		content: none !important;
+	}
+
+	.hide-for-print {
+		display: none;
+	}
+
+	#show-media-screen {
+		display: none;
+	}
+	#show-media-print {
+		display: block;
+		margin: auto auto;
+		width: 70mm;
+		height: 296px;
+	}
+
+	@page {
+	    size: 82.5mm 297mm;
+	    margin: 0mm 0mm 0mm 0mm; /* change the margins as you want them to be. */
+	}
+
+	body {
+	}
+
+	hr {
+		border: 0;
+		height: 1px;
+		width: 80%;
+		background: black;
+		background-image: linear-gradient(to right, #ccc, #333, #ccc);
+	}
+
+	#show-media-print .current-time-cell {
+	}
+
+	#show-media-print .current-time-cell h4{
+		font-size: 18px;
+		font-weight: bold;
+	}
+
+	#show-media-print .company-address {
+		font-size: 18px;
+	}
+
+	#show-media-print .estimated h3 {
+		font-size: 50px;
+		font-weight: bold;
+	}
+
+	#show-media-print .estimated h4 {
+		font-size: 18px;
+	}
+
+	#show-media-print .gtext1 {
+		font-size: 20px;
+	}
+
+	#show-media-print .gtext2 {
+		font-size: 20px;
+	}
+
+	#show-media-print .gtext3 {
+		font-size: 30px;
+	}
+
+	#show-media-print .gtext4 {
+		font-size: 22px;
+	}
+
+	#show-media-print .ticket-number {
+		font-size: 24px;
+		font-weight: bold;
+	}
+
+	#show-media-print .ticket-box {
+		border: 2px solid black;
+	}
+
+	#show-media-print .logo {
+		max-width: 250px;
+	}
+}

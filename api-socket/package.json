@@ -1,0 +1,26 @@
+{
+  "name": "central2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server/main.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.17.1",
+    "body-parser": "^1.18.2",
+    "crypto-js": "^3.1.9-1",
+    "express": "^4.16.2",
+    "jsonwebtoken": "^8.2.0",
+    "material-ui": "^0.20.0",
+    "react-tap-event-plugin": "^3.0.2",
+    "request": "^2.83.0",
+    "socket.io": "^2.0.4"
+  },
+  "devDependencies": {
+    "nodemon": "^1.14.12"
+  }
+}

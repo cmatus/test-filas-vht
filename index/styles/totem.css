@@ -1,0 +1,180 @@
+/*header*/
+/*.navbar {
+	border-color: white;
+	padding-top: 2%;
+	padding-bottom: 2%;
+	margin: 0;
+	height: 107px;
+}*/
+body {
+height: 100vh;
+background-image: url('../images/5780226ce7de4_Vigatec_totem_fondo.png');
+background-color: transparent;
+background-size: 100% 100%;
+background-repeat: no-repeat;
+}
+h1, h2 {
+color: #ffffff;}
+.totem-container {
+background-color: transparent;
+}
+.totem-container {
+
+
+}
+::-webkit-input-placeholder {
+color: #ffffff;
+font-family: 'Roboto';
+font-style: italic;
+font-size: 30px;
+font-weight: normal;
+}
+.panel-extra {
+background-color: #90c6de;
+color: #ffffff;
+}
+.panel-extra-services {
+background-color: #90c6de;
+color: #ffffff;
+border-color: #90c6de;
+border-radius: 15px;
+}
+.panel-extra-services-sub {
+background-color: transparent;
+color: #ffffff;
+border-radius: 15px;
+border: 4px solid #90c6de;
+}
+.pad-extra {
+background-color: #ffffff;
+color: #035071;
+}
+.btn-extra {
+color: #ffffff;
+border: 4px solid #ffffff;
+}
+.btn-extra:hover {
+color: #ffffff;
+}
+.list-service-title {
+font-family: 'Roboto';
+  font-size: 40px;
+  font-weight: 400;
+  margin-top: 25px;
+  margin-bottom: 20px;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+}
+.list-service-subtitle {
+font-family: 'Roboto';
+  font-size: 30px;
+  font-weight: normal;
+  margin-top: 25px;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+
+.navbar-header {
+    float: left;
+    padding: 15px;
+    text-align: center;
+    width: 100%;
+}
+.navbar-brand {float:none;}
+
+body{ 
+	cursor: pointer; 
+	cursor: hand; 
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
+/** body **/
+
+/*html {
+	background-color: #48C895;
+}*/
+
+.back-button{
+	font-family: 'Roboto';
+	font-size: 25px;
+	font-weight: 300;
+	padding: 20px 40px 20px 40px;
+	background-color: #2c4a4b;
+}
+
+.back-button:hover{
+	background-color: #192a2b;
+}
+
+.btn-ruttotem:hover{
+	color: white;
+}
+
+.vertical-center {
+  display: flex;
+  align-items: center;
+}
+
+.btn-ruttotem {
+	background-color: transparent;
+	padding: 15px 50px 15px 50px;
+	border-radius: 15px;
+	font-size: 30px;
+	vertical-align: middle;
+	letter-spacing: 5px;
+}
+
+#loader {
+	display : none;
+    position : fixed;
+    z-index: 100;
+    background-color:#777;
+    opacity : 0.4;
+    background-repeat : no-repeat;
+    background-position : center;
+    left : 0;
+    bottom : 0;
+    right : 0;
+    top : 0;
+}
+
+#spinner {
+	position: absolute;
+	left: 40VW;
+	top: 30VH;
+    border: 16px solid #444; /* Light grey */
+    border-top: 16px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 20VW;
+    height: 20VW;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.service-logo{
+	max-height: 200px;
+	max-width: 200px;
+}
+
+.hidden{
+	display: hidden;
+}
+
+.modal-title{
+	text-align: center;
+}
+
+.modal-body{
+}

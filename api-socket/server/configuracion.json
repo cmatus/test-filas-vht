@@ -1,0 +1,15 @@
+{
+	"id":"111011011",
+	"ip": "192.168.1.104",
+	"puerto": "3001",
+	"local":"1",
+	"socket" : "",
+	"estado" : "1",
+	"socketId" : "",
+	"maestro" : "0",
+	"configuracionMaestroEsclavo" : "0",
+  "servidorCentral" : "localhost",
+  "ticket" : {
+    "ticketsPorDelante" : true
+  }
+}

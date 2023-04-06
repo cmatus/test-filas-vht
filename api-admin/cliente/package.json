@@ -1,0 +1,15 @@
+{
+  "name": "system_festiongilas",
+  "version": "1.0.0",
+  "description": "Sistema - Gestion Filas",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alberto Manque",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^2.5.7",
+    "express": "^4.16.2"
+  }
+}

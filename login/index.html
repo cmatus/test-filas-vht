@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Sistema de filas - Vigatec</title>
+
+    
+    <script src="javascripts/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="javascripts/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+    <link href="styles/bootstrap.css" rel="stylesheet" type="text/css">
+    
+
+    <link rel='stylesheet' href='styles/estilos.css' />
+    <script src="javascripts/socket.io.js" type="text/javascript"></script>
+    <script src="javascripts/funciones.js" type="text/javascript" charset="utf-8"></script>
+    
+  </head>
+  <body>
+    <div class="container">
+        <div class="card card-container">
+            <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
+            <div id="logo"></div>
+            <p id="profile-name" class="profile-name-card"></p>
+            <div class="form-signin">
+                <span id="reauth-email" class="reauth-email"></span>
+                <input type="email" id="inputEmail" class="form-control" placeholder="Usuario" required autofocus>
+                <input type="password" id="inputPassword" class="form-control" placeholder="Contraseña" required>
+                <h4 align="center">Modulo de atención</h4>
+                <select id="selectIdModulo" class="form-control"></select><br><br>
+                <!--<div id="remember" class="checkbox">
+                    <label>
+                        <input type="checkbox" value="remember-me"> Remember me
+                    </label>
+                </div>-->
+                <button class="btn btn-lg btn-primary btn-block btn-signin" onclick="iniciarSesion()">Iniciar sesión</button>
+            </div><!-- /form -->
+            <!--<a href="#" class="forgot-password">
+                Forgot the password?
+            </a>-->
+        </div><!-- /card-container -->
+    </div><!-- /container -->
+      </body>
+</html>

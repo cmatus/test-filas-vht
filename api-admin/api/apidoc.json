@@ -1,0 +1,8 @@
+{
+    "name": "API-ADMIN",
+    "version": "1.0.0",
+    "description": "Sistema de rutas de API-ADMIN",
+    "template": {
+        "forceLanguage": "es"
+    }
+}

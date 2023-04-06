@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">		
+		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+		<link href="stylesheets/bootstrap.css" rel="stylesheet" type="text/css">
+		<link href="stylesheets/fonts.css" rel="stylesheet" type="text/css">
+		<link href="stylesheets/agent1.css" rel="stylesheet" type="text/css">
+		<link href="stylesheets/style.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="stylesheets/font-awesome/css/font-awesome.min.css">
+		
+		<script src="javascripts/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="javascripts/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="javascripts/socket.io.js" type="text/javascript"></script>
+		<script src="javascripts/funciones2.js"></script>
+
+		<title>	Motivos de atención</title>
+	</head>
+	<body>	
+		<div class="navbar navbar-default">
+			<div class="container" style="">
+				<div class="pull-left">
+					<div class="nav-module" style="font-size:30px">
+						Modulo <span id="labelNumeroModulo">1</span>
+					</div>
+				</div>
+				<div class="pull-left" style="margin-left: 30px">
+					<div class="nav-module" style="font-size:30px">
+						<span class="pull-right" id="labelMotivosAtencion"></span>
+					</div>
+				</div>
+				<div class="pull-right">
+					<a href="" onclick="cerrarSesion()" class="pull-right btn custom-button logout nav-button" style="color: white;">Cerrar sesión</a>		
+				</div>
+
+			</div>
+		</div>
+		<div class="container" style="margin-top: 30px">
+			<div class="row">
+				<!-- PANEL LATERAL IZQUIERDO -->
+				<div class="col-md-3">
+					<div class="row">
+						<div class="col-md-8">
+							<button id="boton_iniciar" class="modal-custom-btn cancel-btn" style="width:200px;" onclick="boton_iniciar()"><i class="fa fa-tasks bigicon"></i> Iniciar</button></br></br>
+							<button id="boton_no_atendidos" class="modal-custom-btn cancel-btn" style="width:200px;" onclick="listarDistraidos()"><i class="fa fa-commenting-o bigicon"></i> Distraidos</button></br></br>
+							<button id="boton_pausa" class="modal-custom-btn cancel-btn" style="width:200px;" onclick="mostar_modal_motivos_pausa()"><i class="fa fa-pause bigicon"></i> Pausa</button></br></br>
+						</div>
+					</div>
+				</div>
+				<!-- PANEL CENTRAL -->
+				<div class="col-md-6">
+					<div class="row">
+						<div id="time-panel-body" class="panel-body">
+							<div class="label"><i class="fa fa-clock-o bigicon"></i><span id="labelTiempoAtencion"></span>
+							</div></br>
+							<div class="label" style="padding: 0"><span id="labelTiempoAtencion"></span>
+								<p id="p_estado"></p>
+							</div>
+							
+						</div>
+					</div>
+
+					<div class="row">
+						<div id="ticket-container">
+							<div class="current-ticket">
+								<span id="label_numero_ticket">-</span>
+							</div>
+							<div class="current-ticket-label">
+								<span id="labelCodigoAtencion">-</span>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div id="ticket-container">
+							<div class="current-ticket-label"  style="border-top: 1px solid #cfe0e8;">
+								<div class="row">
+									<div class="col-md-5">
+										<span id="attention-service" style="margin-left: 10px; font-size: 15px;">Categoría de atención</span>
+									</div>
+									<div class="col-md-5">
+										<select id="selectCategorias" class="form-control">
+					            			<option value="0"></option>
+					            		</select>
+									</div>
+									<div class="col-md-2">
+										<button id="" class="modal-custom-btn cancel-btn" style="padding: 5px 5px 5px 5px; width: 100%" onclick="mostrar_comentario();">+ <i class="fa fa-commenting-o bigicon"></i></button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div id="contenedorComentarioDerivado" style="display:none" class="row">
+						<div id="ticket-container">
+							<div class="current-ticket-label"  style="border-top: 1px solid #cfe0e8;">
+								<span id="attention-service" style="margin-left: 10px; font-size: 15px;">Comentario para la derivación</span>
+								<input class="form-control input-lg" style="margin-left: 5%; width: 90%;" id="comentarioDerivado" type="text">
+							</div>
+						</div>
+					</div>
+
+
+					<div id="contenedorComentario" style="display:none" class="row">
+						<div id="ticket-container">
+							<div class="current-ticket-label"  style="border-top: 1px solid #cfe0e8;">
+								<span id="attention-service" style="margin-left: 10px; font-size: 15px;">Comentario</span>
+								<input class="form-control input-lg" style="margin-left: 5%; width: 90%;" id="comentarioTicket" type="text">
+							</div>
+						</div>
+					</div>
+					
+
+					<div class="row" style="margin-top:15px;">
+						<div class="col-md-4">
+							<button id="boton_empezar_atencion" class="modal-custom-btn cancel-btn" style="padding-left: 0; padding-right: 0; width: 100%; color:white; background-color:#27b875" onclick="empezar_atencion()"><i class=""></i><label2 id="texto_boton_empezar_atencion">Empezar Atención</label2></button>
+						</div>
+						<div class="col-md-4">
+							<button id="boton_volver_llamar" class="modal-custom-btn cancel-btn" style="padding-left: 0; padding-right: 0; width: 100%" onclick="volver_llamar()"><i class="fa fa-refresh bigicon"></i> <label2> Volver a llamar (<span2 id="texto_boton_volver_llamar">0</span2>)</label2></button>
+						</div>
+						<div class="col-md-4">
+							<button id="boton_descartar" class="modal-custom-btn cancel-btn" style="padding-left: 0; padding-right: 0; width: 100%" onclick="descartarTicket()"><i class="fa fa-exchange bigicon"></i> Descartar</button>
+						</div>
+					</div>
+				</div>
+				<!-- PANEL LATERAL DERECHO -->
+				<div class="col-md-3" style="padding-left: 60px">
+					<div class="row" style="background-color: #eaf3f7;">
+						<div class="col-md-12 vertical-center pointer" style="padding-left:0;" onclick="listarTicketsFila()">
+							<div class="col-md-6">
+								<div class="panel-ticket-number" id="remaining-tickets" style="text-align:right;">
+									0
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="panel-ticket-number-label" style="padding-bottom:40px; ">
+									Números en Espera
+								</div>
+							</div>
+						</div>
+						<div class="col-md-12 vertical-center" style="padding-left:0;">
+							<div class="col-md-6">
+								<div class="panel-ticket-number" id="remaining-tickets" style="text-align:right;">
+									0
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="panel-ticket-number-label" style="padding-bottom:40px; ">
+									Atenciones realizadas
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+
+
+
+			<!-- ################################################ MODALES ######################################################-->
+			<!-- MODAL SEGUNDO MENÚ -->
+			<div id="myModal" class="modal fade in" role="dialog">
+				<div class="modal-dialog">
+					<div class="modal-content">   
+				        <div class="modal-body ">
+				            <div id="form">
+				            	<div class="form-group">
+									<div class="row">
+										<div class="col-md-6 col-md-offset-3" align="center">
+											<label>Tiempo restante</label>
+											<label>Siguiente llamado</label><br>
+											<label id="label_tiempo_accion" style="font-size:80px">10</label>
+										</div>
+	              					</div>
+				            	</div>
+				        	</div>
+				        </div>
+				        <div class="modal-footer" style="text-align: center">
+              				<div class="row">
+				                <div class="col-md-4" align="center">
+				                  <button class="btn" style="background-color: #c0bebe" onclick="mostar_modal_motivos_pausa()"><i class="fa fa-pause bigicon"></i> Pausa</button>
+				                </div>
+				                <div class="col-md-4" align="center">
+				                  <button class="btn" style="background-color: #c0bebe" onclick="siguiente_atencion()"><i class="fa fa-arrow-circle-o-right bigicon"></i> Siguiente atención</button>
+				                </div>
+				                <div class="col-md-4" align="center">
+				                  <button id="botonDerivar" class="btn" style="background-color: #c0bebe"  onclick="mostar_modal_derivar()"><i class="fa fa-external-link bigicon"></i> Derivar</button>
+				                </div><br><br><br>
+		              		</div>
+		              		<div class="row">
+				                <div class="col-md-6" align="center">
+		                 	 		<button class="btn" style="background-color: #c0bebe" onclick="listarDistraidos()"><i class="fa fa-commenting-o bigicon"></i> No atendidos (Distraídos)</button>
+				                </div>
+			                	<div class="col-md-6" align="center">
+			                  		<button id="botonRetomar" class="btn" style="background-color: #c0bebe" onclick="retomar()"><i class="fa fa-reply bigicon"></i> Retomar</button>
+			                	</div>
+		              		</div>
+				        </div>    
+					</div>
+				</div>           
+			</div>
+		    <div class="modal fade" id="myModal2" role="dialog">
+		      <div class="modal-dialog">
+		      
+		        <!-- Modal content-->
+		        <div class="modal-content">
+		          <div class="modal-header">
+		            <button id="" class="btn pull-right" style="background-color: #c0bebe" onclick="cerrarSesion()"><i class="fa fa-sign-out"></i> Cerrar sesión</button>
+		            <h4 class="modal-title"></h4>
+		          </div>
+		          <div class="modal-body">
+		              <div class="row">
+		                  <div class="col-md-4 col-md-offset-4" align="center">
+		                    <label>Tiempo restante</label>
+		                    <label>Siguiente llamado</label><br>
+		                    <label id="label_tiempo_accion" style="font-size:80px">10</label>
+		                  </div>
+		              </div>
+		              <div class="row">
+		                <div class="col-md-4" align="center">
+		                  <button class="btn" style="background-color: #c0bebe" onclick="mostar_modal_motivos_pausa()"><i class="fa fa-pause bigicon"></i> Pausa</button>
+		                </div>
+		                <div class="col-md-4" align="center">
+		                  <button class="btn" style="background-color: #c0bebe" onclick="siguiente_atencion()"><i class="fa fa-arrow-circle-o-right bigicon"></i> Siguiente atención</button>
+		                </div>
+		                <div class="col-md-4" align="center">
+		                  <button id="botonDerivar" class="btn" style="background-color: #c0bebe"  onclick="mostar_modal_derivar()"><i class="fa fa-external-link bigicon"></i> Derivar</button>
+		                </div><br><br><br>
+		              </div>
+		              <div class="row">
+		                <div class="col-md-6" align="center">
+		                  <button class="btn" style="background-color: #c0bebe" onclick="listarDistraidos()"><i class="fa fa-commenting-o bigicon"></i> No atendidos (Distraídos)</button>
+		                </div>
+		                <div class="col-md-6" align="center">
+		                  <button id="botonRetomar" class="btn" style="background-color: #c0bebe" onclick="retomar()"><i class="fa fa-reply bigicon"></i> Retomar</button>
+		                </div>
+		              </div>
+		          </div>
+		        </div>
+		        
+		      </div>
+		    </div>
+
+
+			<!-- MODAL PAUSA -->
+			<div id="modal_motivos_pausa" class="modal fade in" role="dialog">
+				<div class="modal-dialog">
+					<div class="modal-content">   
+						<div class="modal-header">
+					        <h4 class="modal-title">Pausar Sesión</h4>
+					    </div>  
+				        <div class="modal-body ">
+				            <div id="form">
+				            	<div class="form-group"><label class="control-label required">Seleccione el motivo de su pausa</label>
+				            		<select id="selectMotivosPausa" class="form-control">
+				            			<option value="4">Pausa Baño</option>
+				            			<option value="5">Pausa Almuerzo</option>
+				            			<option value="6">Pausa Atención otro Motivo de Atención</option>
+				            		</select>
+				            	</div>
+				        	</div>
+				        </div>
+				        <div class="modal-footer" style="text-align: center">
+				            <button type="button" class="modal-custom-btn cancel-btn" onclick="ocultar_modal_motivos_pausa()">Cerrar</button>
+				            <button type="button" class="submit modal-custom-btn action-btn" onclick="pausar()">Pausar</button>
+				        </div>    
+					</div>
+				</div>           
+			</div>
+			<!-- MODAL EN PAUSA -->
+			<div id="modal_pausa" class="modal fade in" role="dialog">
+				<div class="modal-dialog">
+					<div class="modal-content">   
+						<div class="modal-header">
+					        <h4 class="modal-title">En pausa</h4>
+					    </div>  
+				        <div class="modal-footer" style="text-align: center">
+				            <button type="button" class="submit modal-custom-btn action-btn" onclick="ocultar_modal_pausa()">Finalizar pausa</button>
+				        </div>    
+					</div>
+				</div>           
+			</div>
+
+		    <!-- MODAL DISTRAIDOS -->
+		    <div id="modal_distraidos" class="modal fade in" role="dialog">
+				<div class="modal-dialog">
+					<div class="modal-content">   
+						<div class="modal-header">
+					        <h4 class="modal-title">Distraídos</h4>
+					    </div>
+						<div class="modal-body ">
+							<div id="panelTicketsDistraidos" class="row">
+		              		</div>
+				        </div>
+
+				        <div class="modal-footer" style="text-align: center">
+				            <button type="button" class="modal-custom-btn cancel-btn" onclick="ocultar_modal_distraidos()">Cerrar</button>
+				            <button type="button" class="submit modal-custom-btn action-btn" onclick="retomarDistraido()">Aceptar</button>
+				        </div>   
+					</div>
+				</div>           
+			</div>
+
+		    <!-- MODAL DERIVADOS -->
+
+			<div id="modal_derivar" class="modal fade in" role="dialog">
+				<div class="modal-dialog">
+					<div class="modal-content">   
+						<div class="modal-header">
+					        <h4 class="modal-title">Derivar</h4>
+					    </div>  
+				        <div class="modal-body ">
+				            <div id="form">
+				            	<div class="form-group"><label class="control-label required">Seleccione el motivo a derivar</label>
+				            		<select id="selectMotivosAtencion" class="form-control">
+				            		</select>
+				            	</div>
+			            		<div class="row">
+					                <div class="col-md-12" align="">
+					                  <label for="inputlg">Comentario</label>
+					                  <input class="form-control input-lg" id="comentarioDerivado" type="text">
+					                </div>
+				              	</div>
+			        		</div>
+				        </div>
+				        <div class="modal-footer" style="text-align: center">
+			              <div class="row">
+			                <div class="col-md-6" align="center">
+			                  <button class="btn" style="background-color: #c0bebe" onclick="derivar()">Aceptar</button>
+			                </div>
+			                <div class="col-md-6" align="center">
+			                  <button class="btn" style="background-color: #c0bebe" onclick="ocultar_modal_derivar()">Cancelar</button>
+			                </div>
+			              </div>
+				        </div>    
+					</div>
+				</div>           
+			</div>
+
+		    <!-- MODAL TICKETS EN FILA -->
+		    <div class="modal fade" id="modal_tickets_fila" role="dialog">
+	      		<div class="modal-dialog">
+			        <!-- Modal content-->
+			        <div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title">Tickets en fila</h4>
+						</div>
+						<div class="modal-body">
+							<div id="panelTicketsCola" class="row">
+							</div>
+							<div class="row">
+								<div class="col-md-12" align="center">
+									<button class="btn" style="background-color: #c0bebe" onclick="ocultar_modal_tickets_fila()">Aceptar</button>
+								</div>
+							</div>
+						</div>
+			        </div>
+	      		</div>
+		    </div>
+
+		    <!-- MODAL ATENCIONES REALIZADAS -->
+		    <div class="modal fade" id="modal_atenciones_realizadas" role="dialog">
+	      		<div class="modal-dialog">
+			        <!-- Modal content-->
+			        <div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title">Atenciones realizadas</h4>
+						</div>
+						<div class="modal-body">
+							<div id="panelAtencionesRealizadas" class="row">
+							</div>
+							<div class="row">
+								<div class="col-md-12" align="center">
+									<button class="btn" style="background-color: #c0bebe" onclick="ocultar_modal_tickets_fila()">Aceptar</button>
+								</div>
+							</div>
+						</div>
+			        </div>
+	      		</div>
+		    </div>
+
+
+		</div>
+	</body>
+</html>

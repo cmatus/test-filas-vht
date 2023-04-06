@@ -1,0 +1,68 @@
+body {
+  height: 100vh;
+  
+}
+h1, h2 {
+  color: #ffffff;}
+  .totem-container {
+  background-color: transparent;
+}
+.totem-container {
+  
+  background-color: transparent;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+::-webkit-input-placeholder {
+  color: #ffffff;
+  font-family: 'Roboto';
+  font-style: italic;
+  font-size: 30px;
+  font-weight: normal;
+}
+.panel-extra {
+  background-color: #90c6de;
+  color: #ffffff;
+}
+.panel-extra-services {
+  background-color: none
+  color: #ffffff;
+  border-color: #90c6de;
+  border-radius: 15px;
+}
+.panel-extra-services-sub {
+  background-color: transparent;
+  color: #ffffff;
+  border-radius: 15px;
+  border: 4px solid #90c6de;
+}
+.pad-extra {
+  background-color: #ffffff;
+  color: #035071;
+}
+.btn-extra {
+  color: #ffffff;
+  border: 4px solid #ffffff;
+}
+.btn-extra:hover {
+  color: #ffffff;
+}
+.list-service-title {
+  font-family: 'Roboto';
+    font-size: 40px;
+    font-weight: 400;
+    margin-top: 25px;
+    margin-bottom: 20px;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+}
+.list-service-subtitle {
+  font-family: 'Roboto';
+    font-size: 30px;
+    font-weight: normal;
+    margin-top: 25px;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+

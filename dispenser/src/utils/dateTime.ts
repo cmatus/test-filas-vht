@@ -7,8 +7,8 @@ export const formatTime = (time: string) => {
 export const formatDate = (date: string) => {
   const year = date?.slice(0, 4);
   const month = date?.slice(4, 6);
-  const day = date?.slice(6, 10);
-  return `${day}/${month}/${year}`;
+  const day = date?.slice(6, 8);
+  return `${year}-${month}-${day}`;
 };
 
 export const getClosestAppointment = (data: any) => {
@@ -19,26 +19,24 @@ export const getClosestAppointment = (data: any) => {
   const todayHours = today.getHours();
   const todayMinutes = today.getMinutes();
 
-  const todayDateFormatted = `${todayDate < 10 ? "0" + todayDate : todayDate}${
+  const todayDateFormatted = `${todayYear}${
     todayMonth < 10 ? "0" + todayMonth : todayMonth
-  }${todayYear}`;
+  }${todayDate < 10 ? "0" + todayDate : todayDate}`;
   const todayTimeFormatted = `${
     todayHours < 10 ? "0" + todayHours : todayHours
   }${todayMinutes < 10 ? "0" + todayMinutes : todayMinutes}`;
 
   const timeDiffs: any = [];
   const appointments = data.filter((appointment: any) => {
-    const appointmentDate = formatDate(appointment.ATENCION_FECHA);
-    const appointmentTime = formatTime(appointment.ATENCION_HORA);
-    const appointmentDateFormatted = appointmentDate.replace(/\//g, "");
-    const appointmentTimeFormatted = appointmentTime.replace(/\:/g, "");
+    const appointmentDate = appointment.ATENCION_FECHA;
+    const appointmentTime = appointment.ATENCION_HORA;
 
     if (
-      appointmentDateFormatted >= todayDateFormatted &&
-      appointmentTimeFormatted >= todayTimeFormatted
+      appointmentDate >= todayDateFormatted &&
+      appointmentTime >= todayTimeFormatted
     ) {
       const appointmentDateTime = new Date(
-        `${appointmentDate} ${appointmentTime}`
+        `${formatDate(appointmentDate)} ${formatTime(appointmentTime)}`
       );
       const timeDiffMs = appointmentDateTime.getTime() - today.getTime();
       const timeDiffMin = Math.floor(timeDiffMs / 60000);

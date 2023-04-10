@@ -7,7 +7,7 @@ import { ICDTUser } from "@/interfaces/cdtUser";
 import { IAppointment } from "./../../interfaces/appointment";
 
 interface cdtState {
-  user: ICDTUser[];
+  user: ICDTUser;
   appointment: IAppointment[];
   isLoading: boolean;
   isError: boolean;
@@ -15,43 +15,41 @@ interface cdtState {
   getData: (rut: string) => void;
 }
 
-const initDataUser = [
-  {
-    PERSONA_ID: "",
-    RUT: "",
-    DV: "",
-    RUT_COMPLETO: "",
-    NOMBRES: "",
-    APELLIDO_PAT: "",
-    APELLIDO_MAT: "",
-    NOMBRE_SOCIAL: "",
-    NOMBRE_COMPLETO: "",
-    FECHA_NACIMIENTO: "",
-    GENERO_DESC: "",
-    ESTADO_CIVIL_DESC: "",
-    OCUPACION_DESC: "",
-    RUT_REPRESENTANTE_LEGAL: "",
-    DV_REPRESENTANTE_LEGAL: "",
-    REPRESENTANTE_LEGAL: "",
-    NOMBRE_PADRE: "",
-    NOMBRE_MADRE: "",
-    NOMBRE_PAREJA: "",
-    URL_FOTO: "",
-    PUEBLO_ORIGINARIO_DESC: "",
-    PAIS_DESC: "",
-    PRAIS: "",
-    PREVISION_ID: "",
-    PREVISION: "",
-    CELULAR: "",
-    COMUNA: "",
-    CIUDAD: "",
-    DIRECCION: "",
-    EMAIL: "",
-    FECHA_FALLECIMIENTO: null,
-    SITUACION_DISCAPACIDAD: "",
-    POLICLINICOS_ACTIVOS: [],
-  },
-];
+const initDataUser = {
+  PERSONA_ID: "",
+  RUT: "",
+  DV: "",
+  RUT_COMPLETO: "",
+  NOMBRES: "",
+  APELLIDO_PAT: "",
+  APELLIDO_MAT: "",
+  NOMBRE_SOCIAL: "",
+  NOMBRE_COMPLETO: "",
+  FECHA_NACIMIENTO: "",
+  GENERO_DESC: "",
+  ESTADO_CIVIL_DESC: "",
+  OCUPACION_DESC: "",
+  RUT_REPRESENTANTE_LEGAL: "",
+  DV_REPRESENTANTE_LEGAL: "",
+  REPRESENTANTE_LEGAL: "",
+  NOMBRE_PADRE: "",
+  NOMBRE_MADRE: "",
+  NOMBRE_PAREJA: "",
+  URL_FOTO: "",
+  PUEBLO_ORIGINARIO_DESC: "",
+  PAIS_DESC: "",
+  PRAIS: "",
+  PREVISION_ID: "",
+  PREVISION: "",
+  CELULAR: "",
+  COMUNA: "",
+  CIUDAD: "",
+  DIRECCION: "",
+  EMAIL: "",
+  FECHA_FALLECIMIENTO: null,
+  SITUACION_DISCAPACIDAD: "",
+  POLICLINICOS_ACTIVOS: [],
+};
 
 const initDataAppointment = [
   {
@@ -92,11 +90,10 @@ export const cdtStore = create<cdtState>((set) => ({
         },
       });
       const data = response.data;
-      console.log(data);
       set((state) => ({
         ...state,
-        user: data,
-        appointment: data,
+        user: data.DATOS_PACIENTE[0],
+        appointment: data.CITAS,
         isLoading: false,
       }));
     } catch (error: any) {

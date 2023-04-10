@@ -19,7 +19,7 @@ const Rut = () => {
 
   const { setFooterButtons, activity, option } = useUI();
   const { getLabData, labData } = useLab();
-  const { setUser, addUser, getData: getPharmacyData } = usePharmacy();
+  const { setUser, addDataRut, getDataRut } = usePharmacy();
   const { getData: getCDTData } = useCDT();
 
   const [showLoading, setShowLoading] = useState(false);
@@ -40,9 +40,9 @@ const Rut = () => {
         });
       } else if (activity === "pharmacy" && option !== "pharmacyNormalRecipe") {
         if (!additional) {
-          getPharmacyData(formatRutRequest(rut));
+          getDataRut(formatRutRequest(rut));
         } else {
-          addUser(DATOS_PACIENTE[0]);
+          addDataRut(formatRutRequest(rut));
         }
         router.push({
           pathname: "/additional",

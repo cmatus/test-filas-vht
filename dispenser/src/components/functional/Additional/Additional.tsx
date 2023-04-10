@@ -17,7 +17,7 @@ const Additional = () => {
 
   const { type } = router.query;
   const { setFooterButtons } = useUI();
-  const { user } = usePharmacy();
+  const { user, recipe } = usePharmacy();
 
   console.log(user);
   const handleClick = (type: string) => {

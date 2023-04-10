@@ -16,7 +16,10 @@ interface pharmacyState {
   addUser: (user: ICDTUser) => void;
   setRecipe: (recipe: IRecipe[]) => void;
   addRecipe: (recipe: IRecipe) => void;
-  getData: (rut: string) => void;
+  getDataRut: (rut: string) => void;
+  addDataRut: (rut: string) => void;
+  getDataNumber: (number: string) => void;
+  addDataNumber: (number: string) => void;
 }
 
 const initDataUser = [
@@ -115,22 +118,128 @@ export const pharmacyStore = create<pharmacyState>((set) => ({
     }));
   },
 
-  getData: async (rut: string) => {
+  getDataRut: async (rut: string) => {
     set((state) => ({ ...state, isLoading: true }));
     try {
-      const targetUrl = `${pharmacyConfig.server}/totem_hhha/recetas/obtener/rut/${rut}/establecimiento_id/${pharmacyConfig.establishmentId}/format/json`;
-      const response = await apiInstance.get("/proxy", {
-        headers: {
-          "x-target-url": targetUrl,
-          "X-Api-Key": pharmacyConfig.apiKey,
+      const targetUrl = `${pharmacyConfig.server}/totem_hhha/recetas/obtener_por_rut`;
+      const response = await apiInstance.post(
+        "/proxy",
+        {
+          rut: rut,
+          establecimiento_id: pharmacyConfig.establishmentId,
         },
-      });
+        {
+          headers: {
+            "x-target-url": targetUrl,
+            "X-Api-Key": pharmacyConfig.apiKey,
+          },
+        }
+      );
       const data = response.data;
-      console.log(data);
       set((state) => ({
         ...state,
         user: data,
+        isLoading: false,
+      }));
+    } catch (error: any) {
+      set((state) => ({ ...state, isLoading: false, isError: true, error }));
+    } finally {
+      set((state) => ({ ...state, isLoading: false }));
+    }
+  },
+
+  addDataRut: async (RUT: string) => {
+    set((state) => ({ ...state, isLoading: true }));
+    try {
+      const targetUrl = `${pharmacyConfig.server}/totem_hhha/recetas/obtener_por_rut`;
+      const response = await apiInstance.post(
+        "/proxy",
+        {
+          rut: RUT,
+          establecimiento_id: pharmacyConfig.establishmentId,
+        },
+        {
+          headers: {
+            "x-target-url": targetUrl,
+            "X-Api-Key": pharmacyConfig.apiKey,
+          },
+        }
+      );
+      const data = response.data;
+      const rut = Object.keys(data)[0];
+
+      set((state) => ({
+        ...state,
+        user: {
+          ...state.user,
+          [rut]: {
+            ...(state.user && (state.user as { [key: string]: any })[rut]
+              ? (state.user as { [key: string]: any })[rut]
+              : {}),
+            ...data[rut],
+          },
+        },
+        isLoading: false,
+      }));
+    } catch (error: any) {
+      set((state) => ({ ...state, isLoading: false, isError: true, error }));
+    } finally {
+      set((state) => ({ ...state, isLoading: false }));
+    }
+  },
+
+  getDataNumber: async (number: string) => {
+    set((state) => ({ ...state, isLoading: true }));
+    try {
+      const targetUrl = `${pharmacyConfig.server}/totem_hhha/recetas/obtener_por_numero`;
+      const response = await apiInstance.post(
+        "/proxy",
+        {
+          numero: number,
+          establecimiento_id: pharmacyConfig.establishmentId,
+        },
+        {
+          headers: {
+            "x-target-url": targetUrl,
+            "X-Api-Key": pharmacyConfig.apiKey,
+          },
+        }
+      );
+      const data = response.data;
+      set((state) => ({
+        ...state,
         recipe: data,
+        isLoading: false,
+      }));
+    } catch (error: any) {
+      set((state) => ({ ...state, isLoading: false, isError: true, error }));
+    } finally {
+      set((state) => ({ ...state, isLoading: false }));
+    }
+  },
+
+  addDataNumber: async (number: string) => {
+    set((state) => ({ ...state, isLoading: true }));
+    try {
+      const targetUrl = `${pharmacyConfig.server}/totem_hhha/recetas/obtener_por_numero`;
+      const response = await apiInstance.post(
+        "/proxy",
+        {
+          numero: number,
+          establecimiento_id: pharmacyConfig.establishmentId,
+        },
+        {
+          headers: {
+            "x-target-url": targetUrl,
+            "X-Api-Key": pharmacyConfig.apiKey,
+          },
+        }
+      );
+      const data = response.data;
+
+      set((state) => ({
+        ...state,
+        recipe: Array.isArray(state.recipe) ? [...state.recipe, ...data] : data,
         isLoading: false,
       }));
     } catch (error: any) {

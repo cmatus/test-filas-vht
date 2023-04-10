@@ -1,15 +1,14 @@
 import { useRouter } from "next/router";
 
-import { DATOS_PACIENTE } from "@/data/mockups/cdt";
-
 import styles from "./Welfare.module.scss";
 
-import { useUI } from "@/store/hooks";
+import { useCDT, useUI } from "@/store/hooks";
 
 const Welfare = () => {
   const router = useRouter();
 
   const { option } = useUI();
+  const { user } = useCDT();
 
   const handleClick = () => {
     if (option === "emergencyClinicWithReferral") {
@@ -22,7 +21,7 @@ const Welfare = () => {
     <div className={styles.ticket}>
       <div className={styles.container}>
         <div className={styles.text}>SU TIPO DE PREVISIÓN:</div>
-        <div className={styles.section}>{DATOS_PACIENTE[0].PREVISION}</div>
+        <div className={styles.section}>{user?.PREVISION}</div>
         <div className={styles.buttonWrapper}>
           <button className={styles.confirmButton} onClick={handleClick}>
             CONFIRMAR

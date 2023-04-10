@@ -1,48 +1,53 @@
 import { Fragment, useEffect, useState } from "react";
 
-import { DATOS_PACIENTE, CITAS } from "@/data/mockups/cdt";
+import { CITAS } from "@/data/mockups/cdt";
 import { getClosestAppointment, formatTime } from "@/utils/dateTime";
 
 import styles from "./Directions.module.scss";
 
-import { useUI } from "@/store/hooks";
+import { useCDT, useUI } from "@/store/hooks";
 import { useRouter } from "next/router";
 import Image from "next/image";
 
 const Directions = () => {
   const [appointment, setAppointment] = useState<any>(null);
+
   const { setFooterButtons, option } = useUI();
+  const { user, appointment: citas } = useCDT();
 
   useEffect(() => {
     setFooterButtons(["back", "home", "exit"]);
   }, []);
 
   useEffect(() => {
-    setAppointment(getClosestAppointment(CITAS));
-  }, [CITAS]);
+    setAppointment(getClosestAppointment(citas));
+  }, [citas]);
+
+  console.log(appointment);
 
   return (
     <Fragment>
       <h1>
         Bienvenido/a
         <br />
-        {DATOS_PACIENTE[0].NOMBRE_COMPLETO}
+        {user?.NOMBRE_COMPLETO}
       </h1>
       {option === "scheduledEntry" ? (
         appointment ? (
           <>
             <h2>
-              Usted {appointment.timeDifference < 0 ? "tenía" : "tiene"} una
-              hora con <br />
+              Usted{" "}
+              {appointment?.appointment?.timeDifference < 0 ? "tenía" : "tiene"}{" "}
+              una hora con <br />
               <span className={styles.schedule}>
                 DR/A.{" "}
-                {appointment.appointment.NOMBRE_PROFESIONAL +
+                {appointment?.appointment?.NOMBRE_PROFESIONAL +
                   " " +
-                  appointment.appointment.APELLIDO_PAT_PROFESIONAL}{" "}
-                a las {formatTime(appointment.appointment.ATENCION_HORA)} hrs
+                  appointment?.appointment?.APELLIDO_PAT_PROFESIONAL}{" "}
+                a las {formatTime(appointment?.appointment?.ATENCION_HORA)} hrs
               </span>
             </h2>
-            <Appointment timeDifference={appointment.timeDifference} />
+            <Appointment timeDifference={appointment?.timeDifference} />
           </>
         ) : (
           <NoAppointment />
@@ -176,18 +181,21 @@ const NoAppointment = () => {
 
 const Referral = () => {
   const router = useRouter();
-  const welfare = DATOS_PACIENTE[0].PREVISION;
+
+  const { user } = useCDT();
+
+  const welfare = user?.PREVISION;
   const [message, setMessage] = useState<string>(() => {
-    if (welfare === "ISAPRE") {
-      return `Estimado usuario, ud. registra previsión particular, por lo que no es posible gestionar su solicitud. 
-            En caso de requerir actualizar su previsión dirigirse a Servicio Social.
-            Para aclarar dudas espere su llamado en mesón de admisión, hall CDT.`;
+    if (["DIPRECA", "CAPREDENA", "FONASA", "PRAIS"].includes(welfare)) {
+      return `Estimado usuario, por favor dirigirse a módulo D con documento de derivación
+      y esperar su turno donde se evaluará factibilidad de atención.`;
     } else if (welfare === "SIN PREVISIÓN" || welfare === "FONASA BLOQUEADO") {
       return `Estimado usuario, hemos detectado problemas con su previsión.
           Se solicita dirigirse a Servicio Social para regularizar.`;
     } else {
-      return `Estimado usuario, por favor dirigirse a módulo D con documento de derivación
-        y esperar su turno donde se evaluará factibilidad de atención.`;
+      return `Estimado usuario, ud. registra previsión particular, por lo que no es posible gestionar su solicitud. 
+            En caso de requerir actualizar su previsión dirigirse a Servicio Social.
+            Para aclarar dudas espere su llamado en mesón de admisión, hall CDT.`;
     }
   });
 
@@ -218,10 +226,11 @@ const Referral = () => {
 const OtherRequests = () => {
   const router = useRouter();
   const { option } = useUI();
+  const { appointment } = useCDT();
   const [message, setMessage] = useState<string>(() => {
-    if (CITAS.length > 0 && option === "followUpRequest") {
+    if (appointment?.length > 0 && option === "followUpRequest") {
       return `Estimado usuario, por favor espere su llamado en mesón de admisión, hall CDT.`;
-    } else if (CITAS.length === 0 && option === "followUpRequest") {
+    } else if (!appointment && option === "followUpRequest") {
       return `Estimado usuario, ud. no presenta especialidad activa en control. Por favor espere su llamado en mesón de admisión, hall CDT.`;
     } else {
       return `Estimado usuario, por favor dirigirse a ventanilla N° XX y esperar su turno.`;

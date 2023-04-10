@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 
 import styles from "./SubMenu.module.scss";
 
-import { useUI } from "@/store/hooks";
+import { useCDT, useUI } from "@/store/hooks";
 interface IOption {
   name: string; // El nombre de la opción.
   text: string; // El texto que se muestra en la opción.
@@ -48,6 +48,7 @@ const SubMenuOption = ({ data }: ISubMenuOption) => {
   const handleClick = (data: IOption) => {
     setOption(data.name);
     if (data.name === "scheduledEntry") {
+      router.push("/preferential");
     }
     if (data.name === "emergencyClinicWithReferral") {
       return router.push("/preferential");

@@ -1,8 +1,6 @@
 import { useEffect, Fragment, useState } from "react";
 import { useRouter } from "next/router";
 
-import { RECETAS } from "@/data/mockups/pharmacy";
-
 import Keyboard from "@/components/ui/Keyboard";
 import Loading from "@/components/ui/Loading";
 
@@ -15,7 +13,7 @@ const Recipe = () => {
   const { additional } = router.query;
 
   const { setFooterButtons } = useUI();
-  const { setRecipe, addRecipe } = usePharmacy();
+  const { getDataNumber, addDataNumber } = usePharmacy();
 
   const [showLoading, setShowLoading] = useState(false);
 
@@ -23,9 +21,9 @@ const Recipe = () => {
     setShowLoading(true);
     setTimeout(() => {
       if (!additional) {
-        setRecipe(RECETAS);
+        getDataNumber(textRecipe);
       } else {
-        addRecipe(RECETAS[0]);
+        addDataNumber(textRecipe);
       }
       router.push({
         pathname: "/additional",

@@ -23,11 +23,10 @@ REST.prototype.connectMysql = function () {
         connectionLimit: 100,
         waitForConnections: true,
         queueLimit: 0,
-        host: "containers-us-west-9.railway.app", // "127.0.0.1"
-        port: 5575,
+        host: "localhost",
         user: "root",
-        password: "988dQpmIE1fFCuowKqDl", //"W3nj1t0_", // V1g4t3c.,
-        database: "railway", //gestionfila
+        password: "W3nj1t0_", // V1g4t3c.,
+        database: "gestionfila",
         debug: false,
         wait_timeout: 28800,
         connect_timeout: 10,

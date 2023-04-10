@@ -6,18 +6,31 @@ import { useUI } from "@/store/hooks";
 
 import styles from "./MainMenu.module.scss";
 
-const menuOptions = [
+interface IOption {
+  name: "cdt" | "lab" | "pharmacy";
+  text: string;
+  icon: string;
+  path: string;
+}
+
+const menuOptions: IOption[] = [
   {
-    name: "",
+    name: "lab",
     text: "UNIDAD DE TOMA DE MUESTRAS LABORATORIO CLÍNICO",
     icon: "laboratorio.png",
     path: "/activities",
   },
   {
-    name: "",
+    name: "cdt",
     text: "CENTRO DE DIAGNOSTICO Y TRATAMIENTO",
     icon: "tratamiento_diagnostico.png",
-    path: "",
+    path: "/rut",
+  },
+  {
+    name: "pharmacy",
+    text: "FARMACIA",
+    icon: "farmacia.png",
+    path: "/activities",
   },
 ];
 

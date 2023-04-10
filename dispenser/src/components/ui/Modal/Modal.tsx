@@ -3,17 +3,15 @@ import { useState, useEffect } from "react";
 import styles from "./Modal.module.scss";
 
 interface IModal {
-  children: any;
-  showModal: boolean;
+  children: React.ReactNode; // JSX.Element | JSX.Element[];
+  showModal: boolean; // Indica si se debe mostrar el modal.
 }
 
-interface IWindow {
-  title?: string;
-  children: any;
-  showCloseButton?: boolean;
-  setClosed?: any;
-}
-
+/**
+ * Componente Modal
+ * @param {IModal} props - Propiedades del componente
+ * @returns {JSX.Element}
+ */
 const Modal = ({ children, showModal }: IModal) => {
   const [isShowModal, setIsShowModal] = useState(showModal);
 
@@ -24,18 +22,31 @@ const Modal = ({ children, showModal }: IModal) => {
   return (
     <div
       className={styles.modal}
-      style={{ display: isShowModal ? "flex" : "none" }}>
+      style={{ display: isShowModal ? "flex" : "none" }}
+    >
       {children}
     </div>
   );
 };
 
+interface IWindow {
+  title?: string; // El título del componente Window.
+  children: React.ReactNode; // JSX.Element | JSX.Element[];
+  showCloseButton?: boolean; // Indica si se debe mostrar el botón de cerrar.
+  setClosed?: () => void; // Función que se ejecuta cuando se cierra el componente.
+}
+
+/**
+ * Componente Window
+ * @param {IWindow} props - Propiedades del componente
+ * @returns {JSX.Element}
+ */
 const Window = ({
   title = "",
   children,
   showCloseButton = true,
   setClosed,
-}: any) => {
+}: IWindow) => {
   return (
     <div className={styles.window}>
       {(title !== "" || showCloseButton) && (

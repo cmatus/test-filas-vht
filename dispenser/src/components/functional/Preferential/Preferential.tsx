@@ -16,19 +16,62 @@ interface IOption {
 const Preferential = () => {
   const router = useRouter();
 
-  const { setFooterButtons } = useUI();
+  const { setFooterButtons, setPreferential, option } = useUI();
+
+  const handlePreferential = (name: string) => {
+    setPreferential(name);
+    if (
+      option === "scheduledEntry" ||
+      option === "emergencyClinicWithReferral"
+    ) {
+      router.push("/welfare");
+    } else if (option === "otherRequests") {
+      router.push("/otherRequests");
+    } else {
+      const query = { preferential: name };
+      router.push({ pathname: "/ticket", query });
+    }
+  };
 
   const dataOptions: IOption[] = [
-    { name: "", text: "NO", className: "cancel" },
-    { name: "", text: "EMBARAZADA", className: "" },
-    { name: "", text: "MOVILIDAD REDUCIDA", className: "" },
-    { name: "", text: "SILLA DE RUEDAS", className: "" },
     {
-      name: "",
+      name: "notPreferential",
+      text: "NO",
+      className: "cancel",
+      onClick: () => {
+        handlePreferential("notPreferential");
+      },
+    },
+    {
+      name: "pregnant",
+      text: "EMBARAZADA",
+      className: "",
+      onClick: () => {
+        handlePreferential("pregnant");
+      },
+    },
+    {
+      name: "reducedMobility",
+      text: "MOVILIDAD REDUCIDA",
+      className: "",
+      onClick: () => {
+        handlePreferential("reducedMobility");
+      },
+    },
+    {
+      name: "wheelchair",
+      text: "SILLA DE RUEDAS",
+      className: "",
+      onClick: () => {
+        handlePreferential("wheelchair");
+      },
+    },
+    {
+      name: "disabilityCard",
       text: "CARNET DE DISCAPACIDAD",
       className: "",
       onClick: () => {
-        router.push("/ticket");
+        handlePreferential("disabilityCard");
       },
     },
   ];
@@ -42,7 +85,7 @@ const Preferential = () => {
       <h2>Por favor seleccione una opción</h2>
       <OptionSelect
         title="¿ES USTED UN PACIENTE PREFERENCIAL?"
-        subTitle="(Embarazadas, tercera Edad, movilidad reducida, etc.)"
+        subTitle="(Embarazadas, Tercera edad, Movilidad reducida, etc...)"
         icon="/images/icons/preferencial.png"
         options={dataOptions}
       />

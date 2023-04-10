@@ -1,0 +1,64 @@
+.ticket {
+  border-radius: 10px;
+  background: #01afb3;
+  padding: 20px;
+  width: 700px;
+
+  .container {
+    border-radius: 10px;
+    border: 7px solid white;
+
+    .text {
+      text-align: center;
+      font-family: "Montserrat";
+      font-style: normal;
+      font-weight: 700;
+      font-size: 30px;
+      color: white;
+      margin: 31px 0;
+    }
+
+    .section {
+      text-align: center;
+      font-family: "Montserrat";
+      font-style: normal;
+      font-weight: 700;
+      font-size: 45px;
+      color: white;
+      margin-top: 100px;
+      margin-bottom: 200px;
+    }
+
+    .buttonWrapper {
+      display: flex;
+      width: 100%;
+      background: none;
+      margin-bottom: 200px;
+
+      button.confirmButton {
+        text-decoration: none;
+        border: none;
+        background: #00ff00;
+        width: 405px;
+        height: 125px;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.35);
+        border-radius: 10px;
+        font-family: "Montserrat";
+        font-style: normal;
+        font-weight: 700;
+        font-size: 55px;
+        text-align: center;
+        line-height: 125px;
+        color: #fbfbfb;
+        text-transform: uppercase;
+        transition: all 0.3s;
+        margin: 0 auto;
+        cursor: pointer;
+
+        &:active {
+          transform: scale(0.9);
+        }
+      }
+    }
+  }
+}

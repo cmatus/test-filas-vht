@@ -2,36 +2,21 @@ import { useEffect, Fragment } from "react";
 
 import SubMenu from "@/components/ui/SubMenu";
 
-import { useUI } from "@/store/hooks";
+import { activitiesOptions } from "@/data/activitiesOptions";
+
+import { useCDT, useUI } from "@/store/hooks";
 
 import styles from "./Activities.module.scss";
 
-const activitiesOptions = [
-  {
-    name: "",
-    text: "TOMA DE MUESTRAS",
-    path: "/rut",
-  },
-  {
-    name: "",
-    text: "SOLICITUD DE HORA PARA TOMA DE EXÁMENES",
-    path: "",
-  },
-  {
-    name: "",
-    text: "SOLICITUD DE RESULTADOS DE EXÁMENES",
-    path: "",
-  },
-  {
-    name: "",
-    text: "OTRAS CONSULTAS",
-    path: "",
-  },
-];
-
+/**
+ * Componente principal para la sección de actividades
+ * @returns {JSX.Element}
+ */
 const Activities = () => {
-  const { setFooterButtons } = useUI();
+  const { setFooterButtons, activity } = useUI();
+  const { user } = useCDT();
 
+  console.log(user);
   useEffect(() => {
     setFooterButtons(["back", "home", "exit"]);
   }, []);
@@ -39,7 +24,9 @@ const Activities = () => {
   return (
     <Fragment>
       <h2>Por favor seleccione una opción</h2>
-      <SubMenu options={activitiesOptions} />
+      <SubMenu
+        options={activitiesOptions.filter((item) => item.activity === activity)}
+      />
     </Fragment>
   );
 };

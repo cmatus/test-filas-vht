@@ -1,0 +1,35 @@
+export interface ICDTUser {
+  PERSONA_ID: string;
+  RUT: string;
+  DV: string;
+  RUT_COMPLETO: string;
+  NOMBRES: string;
+  APELLIDO_PAT: string;
+  APELLIDO_MAT: string;
+  NOMBRE_SOCIAL: string;
+  NOMBRE_COMPLETO: string;
+  FECHA_NACIMIENTO: string;
+  GENERO_DESC: string;
+  ESTADO_CIVIL_DESC: string;
+  OCUPACION_DESC: string;
+  RUT_REPRESENTANTE_LEGAL: string;
+  DV_REPRESENTANTE_LEGAL: string;
+  REPRESENTANTE_LEGAL: string;
+  NOMBRE_PADRE: string;
+  NOMBRE_MADRE: string;
+  NOMBRE_PAREJA: string;
+  URL_FOTO: string | null;
+  PUEBLO_ORIGINARIO_DESC: string;
+  PAIS_DESC: string;
+  PRAIS: string;
+  PREVISION_ID: string;
+  PREVISION: string;
+  CELULAR: string;
+  COMUNA: string;
+  CIUDAD: string | null;
+  DIRECCION: string;
+  EMAIL: string;
+  FECHA_FALLECIMIENTO: string | null;
+  SITUACION_DISCAPACIDAD: string;
+  POLICLINICOS_ACTIVOS: string[];
+}

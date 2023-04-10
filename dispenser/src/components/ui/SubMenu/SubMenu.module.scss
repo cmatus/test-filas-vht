@@ -1,0 +1,100 @@
+.subMenu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 650px;
+  background: #01afb3;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  padding: 30px;
+  gap: 20px;
+
+  .subMenuOption {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 200px;
+    background: #fbfbfb;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.35);
+    border-radius: 10px;
+    justify-content: center;
+    text-decoration: none;
+    font-family: "Montserrat";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 31px;
+    line-height: 38px;
+    color: #01afb3;
+    padding: 40px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+
+    &:active {
+      transform: scale(0.9);
+    }
+  }
+
+  .buttonContainer {
+    height: 835px;
+
+    .buttonWrapper {
+      display: flex;
+      height: 275px;
+      width: 300px;
+      background: none;
+      margin: 0 auto;
+      flex-direction: column;
+      justify-content: space-between;
+
+      button.confirmButton {
+        text-decoration: none;
+        border: none;
+        background: #00ff00;
+        width: 300px;
+        height: 125px;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.35);
+        border-radius: 10px;
+        font-family: "Montserrat";
+        font-style: normal;
+        font-weight: 700;
+        font-size: 55px;
+        text-align: center;
+        line-height: 125px;
+        color: #fbfbfb;
+        text-transform: uppercase;
+        transition: all 0.3s;
+        cursor: pointer;
+
+        &:active {
+          transform: scale(0.9);
+        }
+      }
+
+      button.cancelButton {
+        text-decoration: none;
+        background: #b7b7b7;
+        border: none;
+        width: 300px;
+        height: 125px;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.35);
+        border-radius: 10px;
+        font-family: "Montserrat";
+        font-style: normal;
+        font-weight: 700;
+        font-size: 55px;
+        text-align: center;
+        line-height: 125px;
+        color: #fbfbfb;
+        text-transform: uppercase;
+        transition: all 0.3s;
+        cursor: pointer;
+
+        &:active {
+          transform: scale(0.9);
+        }
+      }
+    }
+  }
+}

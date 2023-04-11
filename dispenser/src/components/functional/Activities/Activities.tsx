@@ -18,7 +18,6 @@ const Activities = () => {
   const { setFooterButtons, activity } = useUI();
   const { user } = useCDT();
 
-  console.log(user);
   if (activity === "cdt" && user === null) {
     router.push("/preferential");
   }

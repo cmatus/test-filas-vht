@@ -26,6 +26,7 @@ proxyRouter.all("/proxy", async function (req, res) {
             params: query,
         };
 
+        // tests
         // test lab
         if (targetUrl.includes("http://10.6.84.181/api/apiTotem/")) {
             console.log(dataLab)

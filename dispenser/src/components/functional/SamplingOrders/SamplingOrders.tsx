@@ -23,15 +23,16 @@ interface IOption {
 const SamplingOrders = () => {
   const router = useRouter();
 
-  const { rut } = router.query;
-  const queryRut = rut?.slice(-2) as string;
-
   const { setFooterButtons } = useUI();
   const { labData, error } = useLab();
 
-  console.log(error);
+  const solicitudesKeys = Object.keys(labData.resultado?.solicitudes || {});
+  const solicitudesData = solicitudesKeys.map((rut) => {
+    const solicitudArray = labData.resultado.solicitudes[rut];
+    return { rut, solicitudArray };
+  });
   const dataOptions: IOption[] =
-    labData?.resultado?.solicitudes[queryRut]?.map((item: any) => {
+    solicitudesData[0].solicitudArray?.map((item: any) => {
       return {
         name: "",
         text: ReactHtmlParser(

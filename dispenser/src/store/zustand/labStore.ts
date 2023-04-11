@@ -37,6 +37,7 @@ export const labStore = create<labState>((set) => ({
         },
       });
 
+      console.log(response.data);
       if (response.data.validacion !== "003") {
         throw new Error(response.data.tipo);
       }

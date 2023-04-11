@@ -1,7 +1,6 @@
 import { useEffect, Fragment, useState } from "react";
 import { useRouter } from "next/router";
 
-import { DATOS_PACIENTE } from "@/data/mockups/pharmacy";
 import { samplingOrder } from "@/data/mockups/laboratory";
 import { isSenior } from "@/utils/isSenior";
 import { formatRutRequest } from "@/utils/format";
@@ -18,8 +17,8 @@ const Rut = () => {
   const { additional } = router.query;
 
   const { setFooterButtons, activity, option } = useUI();
-  const { getLabData, labData } = useLab();
-  const { setUser, addDataRut, getDataRut } = usePharmacy();
+  const { getLabData } = useLab();
+  const { addDataRut, getDataRut } = usePharmacy();
   const { getData: getCDTData } = useCDT();
 
   const [showLoading, setShowLoading] = useState(false);

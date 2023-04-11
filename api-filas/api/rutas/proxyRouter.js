@@ -1,6 +1,6 @@
 const express = require("express");
 const axios = require("axios");
-const { dataCDT, dataFarmaciaRut, dataFarmaciaNum } = require("../data/test");
+const { dataLab, dataCDT, dataFarmaciaRut, dataFarmaciaNum } = require("../data/test");
 const proxyRouter = express.Router();
 
 proxyRouter.all("/proxy", async function (req, res) {
@@ -25,6 +25,12 @@ proxyRouter.all("/proxy", async function (req, res) {
             data: body,
             params: query,
         };
+
+        // test lab
+        if (targetUrl.includes("http://10.6.84.181/api/apiTotem/")) {
+            console.log(dataLab)
+            return res.status(200).send(dataLab);
+        }
 
         // test cdt
         if (

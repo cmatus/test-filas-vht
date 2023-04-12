@@ -26,9 +26,17 @@ const SamplingOrders = () => {
   const { setFooterButtons } = useUI();
   const { labData, error } = useLab();
 
+  useEffect(() => {
+    setFooterButtons(["back", "home", "exit"]);
+  }, []);
+
+  if (!labData) {
+    return null;
+  }
+
   const solicitudesKeys = Object.keys(labData.resultado?.solicitudes || {});
   const solicitudesData = solicitudesKeys.map((rut) => {
-    const solicitudArray = labData.resultado.solicitudes[rut];
+    const solicitudArray = labData.resultado.solicitudes[rut] || {};
     return { rut, solicitudArray };
   });
   const dataOptions: IOption[] =
@@ -45,10 +53,6 @@ const SamplingOrders = () => {
   const handleClickOrder = () => {
     router.push("/confirmExam");
   };
-
-  useEffect(() => {
-    setFooterButtons(["back", "home", "exit"]);
-  }, []);
 
   return (
     <Fragment>

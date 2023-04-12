@@ -6,7 +6,7 @@ import { labConfig } from "@/utils/config";
 import { ILabData, ILabUser } from "@/interfaces/labUser";
 
 interface labState {
-  labData: ILabData;
+  labData: ILabData | null;
   isLoading: boolean;
   isError: boolean;
   error: string;
@@ -14,14 +14,7 @@ interface labState {
 }
 
 export const labStore = create<labState>((set) => ({
-  labData: {
-    validacion: "",
-    resultado: {
-      solicitud: [],
-      solicitudes: {},
-    },
-    tipo: "",
-  },
+  labData: null,
   isLoading: false,
   isError: false,
   error: "",

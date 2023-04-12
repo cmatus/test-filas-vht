@@ -14,7 +14,7 @@ import { useLab, useUI } from "@/store/hooks";
 
 interface IOption {
   name: string;
-  text: string;
+  text: any;
   className?: string;
   path?: string;
   onClick?: any;

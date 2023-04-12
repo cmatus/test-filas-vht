@@ -184,7 +184,7 @@ const Referral = () => {
 
   const { user } = useCDT();
 
-  const welfare = user?.PREVISION;
+  const welfare = user?.PREVISION || "";
   const [message, setMessage] = useState<string>(() => {
     if (["DIPRECA", "CAPREDENA", "FONASA", "PRAIS"].includes(welfare)) {
       return `Estimado usuario, por favor dirigirse a módulo D con documento de derivación
@@ -225,10 +225,16 @@ const Referral = () => {
 
 const OtherRequests = () => {
   const router = useRouter();
+
   const { option } = useUI();
   const { appointment } = useCDT();
+
   const [message, setMessage] = useState<string>(() => {
-    if (appointment?.length > 0 && option === "followUpRequest") {
+    if (
+      appointment &&
+      appointment?.length > 0 &&
+      option === "followUpRequest"
+    ) {
       return `Estimado usuario, por favor espere su llamado en mesón de admisión, hall CDT.`;
     } else if (!appointment && option === "followUpRequest") {
       return `Estimado usuario, ud. no presenta especialidad activa en control. Por favor espere su llamado en mesón de admisión, hall CDT.`;

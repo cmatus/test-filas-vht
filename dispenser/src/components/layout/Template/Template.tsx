@@ -71,10 +71,12 @@ const Footer = ({ components }: IFooter) => {
   const router = useRouter();
 
   const componentsArray = {
-    back: <NavButton iconName="back" onClick={() => router.back()} />,
-    home: <NavButton iconName="home" onClick={() => router.push("/")} />,
-    exit: <NavButton iconName="exit" />,
-    logo: <VigatecLogo />,
+    back: <NavButton key={1} iconName="back" onClick={() => router.back()} />,
+    home: (
+      <NavButton key={2} iconName="home" onClick={() => router.push("/")} />
+    ),
+    exit: <NavButton key={3} iconName="exit" />,
+    logo: <VigatecLogo key={4} />,
   };
 
   return (
